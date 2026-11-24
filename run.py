@@ -137,12 +137,30 @@ def chats():
     return [c.strip() for c in os.environ.get("TG_MANUAL_CHAT_IDS", "").split(",") if c.strip()]
 
 def run_autogen(ch):
+    """Navbat tugadi: API kaliti bo'lsa — avtomatik yozadi, bo'lmasa — qo'lda yuklashni eslatadi."""
     from tools import autogen
+    if not os.environ.get("ANTHROPIC_API_KEY"):
+        telegram.notify(f"AI {ch.name}: navbatdagi ssenariylar tugadi. Yangi JSON faylni GitHub'da inbox/{ch.name}/ papkasiga yuklang "
+                        f"(yo'riqnoma: docs/SSENARIY_YOZISH.md).")
+        return []
     new = autogen.generate(ch)
     if new:
         telegram.send_text(autogen.review_text(ch, new), chats())
         telegram.notify(f"AI {ch.name}: {len(new)} ta yangi ssenariy yozildi va navbatga qo'shildi.")
     return new
+
+def run_inbox(ch):
+    from tools import inbox, autogen
+    added, errors = inbox.process(ch)
+    if added:
+        telegram.send_text(autogen.review_text(ch, added), chats())
+    if errors:
+        telegram.send_text(f"⚠️ {ch.cfg.get('bot_head', ch.name)}: inbox'dagi {len(errors)} ta ssenariy qabul qilinmadi:\n\n" + "\n\n".join(errors), chats())
+    if added or errors: print(f"[{ch.name}] inbox: +{len(added)}, xato {len(errors)}")
+
+def check_episode(ch, ep):
+    from tools.autogen import validate, SPECS
+    return validate(ep, SPECS[ch.name])
 
 # ------------------------------------------------------------------ main
 def main():
@@ -174,6 +192,10 @@ def main():
         for c in chs: run_autogen(c)
         return
 
+    if not pv and not a.no_send:
+        for c in chs:
+            try: run_inbox(c)
+            except Exception as e: print(f"[{c.name}] inbox xato: {e}")
     jobs = []
     for c in chs:
         if slot and c.slot_done(slot):
@@ -193,13 +215,17 @@ def main():
         job = None
         for p in c.queue():
             ep = json.load(open(p, encoding="utf-8"))
+            err = check_episode(c, ep)
+            if err:
+                c.d["failed"].append(ep["id"]); c.save()
+                telegram.notify(f"AI {c.name}: {ep['id']} ssenariysida xato, o'tkazib yuborildi: " + "; ".join(err[:4])); continue
             try:
                 job = make_video(c, p, a.quality, a.sponsor, a.no_sponsor, pv)
                 break
             except Exception as e:
-                if not ep.get("auto"): raise
+                if ep.get("num", 0) <= 10: raise   # boshlang'ich (tekshirilgan) epizodlar — haqiqiy xato
                 c.d["failed"].append(ep["id"]); c.save()
-                telegram.notify(f"AI {c.name}: avtomatik ssenariy {ep['id']} render bo'lmadi ({e}). Keyingisi olinadi.")
+                telegram.notify(f"AI {c.name}: ssenariy {ep['id']} render bo'lmadi ({e}). Keyingisi olinadi.")
         if job: job["queued"] = True; jobs.append(job)
         elif not pv: telegram.notify(f"AI {c.name}: navbatda video yo'q.")
 
@@ -220,7 +246,8 @@ def main():
             c.d["sponsor_counts"][j["sponsor"]["id"]] = c.d["sponsor_counts"].get(j["sponsor"]["id"], 0) + 1
         c.save()
         left = len(c.queue())
-        telegram.notify(f"AI {c.name}: {ep['id']} yuborildi. Navbatda qoldi: {left}")
+        telegram.notify(f"AI {c.name}: {ep['id']} yuborildi. Navbatda qoldi: {left}"
+                        + (f"\n📥 Ssenariylar kam qoldi — inbox/{c.name}/ ga yangilarini yuklang." if left in (6, 4, 2) else ""))
         if j["queued"] and left == 0:
             try: run_autogen(c)
             except Exception as e:

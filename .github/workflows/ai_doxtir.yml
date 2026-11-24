@@ -102,7 +102,8 @@ jobs:
         run: |
           git config user.name "ai-doxtir-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/ episodes/ channels/ 2>/dev/null || true
+          python tools/make_prompt.py || true
+          git add data/ episodes/ channels/ inbox/ docs/ 2>/dev/null || true
           git diff --cached --quiet || (git commit -m "holat yangilandi" && git pull --rebase -q && git push)
 
       - name: Xato bo'lsa Telegramga xabar

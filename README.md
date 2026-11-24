@@ -22,7 +22,8 @@ tools/make_episodes.py epizod JSON'larini yozadi
 ## Jadval va avtomatik ssenariylar
 - `.github/workflows/ai_doxtir.yml`: render 05:35 / 18:35 da boshlanadi, video aniq **06:00 / 19:00** da yuboriladi (`run.py --send-at auto`). Zaxira: 06:20 / 19:20.
 - Kanallar: `run.py` → `CHANNELS`. doxtir: `config.json`, `episodes/`, `data/sent.json`; olmaliq: `channels/olmaliq/config.json`, `channels/olmaliq/episodes/`, `data/sent_olmaliq.json`.
-- Navbat tugasa `tools/autogen.py` Claude API (veb-qidiruv bilan) orqali keyingi 10 ta ssenariyni yozadi, tekshiradi, navbatga qo'shadi va matnini botga ko'rib chiqish uchun yuboradi. Kerak: **`ANTHROPIC_API_KEY`** Secret.
+- **Qo'lda (API'siz):** `docs/SSENARIY_YOZISH.md` — Claude chatda `docs/PROMPT_*.md` bilan yozdirib, `inbox/<kanal>/` ga yuklaysiz.
+- Ixtiyoriy: `ANTHROPIC_API_KEY` bo'lsa, navbat tugasa `tools/autogen.py` Claude API (veb-qidiruv bilan) orqali keyingi 10 ta ssenariyni yozadi, tekshiradi, navbatga qo'shadi va matnini botga ko'rib chiqish uchun yuboradi. Kerak: **`ANTHROPIC_API_KEY`** Secret.
 - ai_olmaliq 3D sahnalari: `engine/olmaliq3d.py` (terrain, quarry, ore, flotation, globe, shaft, osprite). Boshlang'ich 10 epizod: `tools/make_olmaliq.py`.
 - Globus teksturasi: NASA Blue Marble (public domain), `assets/textures/earth.jpg`.
 
