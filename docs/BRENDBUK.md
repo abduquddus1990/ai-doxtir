@@ -26,7 +26,7 @@ Instagram profil rasmi uchun `_1080.png` ni yuklang (Instagram o'zi doira qilib 
 Montserrat (ExtraBold sarlavhalar, SemiBold/Bold matn). Litsenziya: SIL OFL (`assets/fonts/OFL.txt`).
 
 ## "Olmaliqlik tomonidan" fishkalari (videolarda avtomatik)
-1. Tepada: logo + `@ai_doxtir` va o'ng burchakda **"OLMALIQDA TAYYORLANDI"** muhri (`config.json` → `stamp`).
+1. Tepada: logo + handle (`@ai_doxtir` yoki `@ai_olmaliq`). Muhr (`stamp`) 2026-11-24 dan olib tashlangan.
 2. Oxirgi kadr: **"@ai_doxtir × @ai_olmaliq"** va **"Olmaliqdan — Olmaliq uchun"**.
 3. Tavsif oxirida: "🏔 Olmaliqdan — Olmaliq uchun · @ai_olmaliq bilan hamkorlikda".
 4. Joylashda: geoteg **Olmaliq**, Instagram **Collab** → @ai_olmaliq (video ikkala sahifada chiqadi).

@@ -1,14 +1,15 @@
-"""AI Doxtir — navbatdagi epizodni 3D render qiladi, montaj qiladi va @ai_doxtirBot orqali
-video + tavsif matnini (Instagram uchun) yuboradi.
+"""AI Doxtir / AI Olmaliq — navbatdagi epizodni 3D render qiladi, montaj qiladi va bot orqali
+video + tavsif matnini (Instagram uchun) yuboradi. Navbat tugasa, yangi ssenariylarni avtomatik yozadi.
 
-  python run.py                                  # navbatdagi epizod, to'liq sifat, Telegramga yuborish
-  python run.py --episode e03_implant            # aniq epizod
-  python run.py --quality preview --no-send      # tez sinov (past sifat)
-  python run.py --episode e01_karies --preview-times 2,10,20   # bir nechta kadr (jpg)
-  python run.py --sponsor namuna_klinika         # hamkorni majburan qo'shish (sinov uchun)
-  python run.py --no-sponsor                     # reklamasiz
-  python run.py --check                          # GitHub Actions: bugun yuborilganmi?
-  python run.py --list                           # navbat holati
+  python run.py                                   # doxtir: navbatdagi epizod, yuborish
+  python run.py --channels doxtir,olmaliq --slot auto --send-at auto   # jadval (GitHub Actions)
+  python run.py --channel olmaliq --episode o01_nomi                 # aniq epizod (navbatni o'zgartirmaydi)
+  python run.py --quality preview --no-send       # tez sinov (past sifat)
+  python run.py --episode e01_karies --preview-times 2,10,20         # bir nechta kadr (jpg)
+  python run.py --sponsor namuna_klinika          # hamkorni majburan qo'shish (sinov uchun)
+  python run.py --check --channels doxtir,olmaliq --slot auto        # GitHub Actions: bu slot yuborilganmi?
+  python run.py --list --channel olmaliq          # navbat holati
+  python run.py --autogen --channel doxtir        # ssenariylarni hozir yozish (sinov)
 """
 import os, sys, json, glob, hashlib, argparse, shutil, subprocess, datetime as dt, time
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -20,32 +21,41 @@ try:
     from dotenv import load_dotenv; load_dotenv(os.path.join(ROOT, ".env"))
 except Exception:
     pass
-from engine.compose import render_video
 from publishers import telegram
 
-EP_DIR = os.path.join(ROOT, "episodes"); BUILD = os.path.join(ROOT, "build"); OUT = os.path.join(ROOT, "out")
-SENT = os.path.join(ROOT, "data", "sent.json")
+BUILD = os.path.join(ROOT, "build"); OUT = os.path.join(ROOT, "out")
+CHANNELS = {
+    "doxtir":  {"cfg": "config.json", "episodes": "episodes", "sent": "data/sent.json", "prefix": "e"},
+    "olmaliq": {"cfg": "channels/olmaliq/config.json", "episodes": "channels/olmaliq/episodes", "sent": "data/sent_olmaliq.json", "prefix": "o"},
+}
+SLOTS = {"am": "06:00", "pm": "19:00"}   # Toshkent vaqti
 
-def today():
-    return (dt.datetime.now(dt.timezone.utc) + dt.timedelta(hours=5)).date()
+def now_tk(): return dt.datetime.now(dt.timezone.utc) + dt.timedelta(hours=5)
+def today(): return now_tk().date()
+def auto_slot(): return "am" if now_tk().hour < 12 else "pm"
 
-def load_sent():
-    d = json.load(open(SENT, encoding="utf-8")) if os.path.exists(SENT) else {}
-    d.setdefault("sent", []); d.setdefault("log", {}); d.setdefault("sponsor_counts", {})
-    return d
+class Channel:
+    def __init__(self, name):
+        c = CHANNELS[name]; self.name = name; self.prefix = c["prefix"]
+        self.cfg_path = os.path.join(ROOT, c["cfg"]); self.ep_dir = os.path.join(ROOT, c["episodes"]); self.sent_path = os.path.join(ROOT, c["sent"])
+        self.cfg = json.load(open(self.cfg_path, encoding="utf-8"))
+        self.d = self.load_sent()
 
-def save_sent(d):
-    os.makedirs(os.path.dirname(SENT), exist_ok=True)
-    d["log"] = {k: d["log"][k] for k in sorted(d["log"])[-30:]}
-    json.dump(d, open(SENT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    def load_sent(self):
+        d = json.load(open(self.sent_path, encoding="utf-8")) if os.path.exists(self.sent_path) else {}
+        for k, v in (("sent", []), ("log", {}), ("sponsor_counts", {}), ("failed", [])): d.setdefault(k, v)
+        return d
 
-def episodes():
-    return sorted(glob.glob(os.path.join(EP_DIR, "*.json")))
+    def save(self):
+        os.makedirs(os.path.dirname(self.sent_path), exist_ok=True)
+        d = self.d; d["log"] = {k: d["log"][k] for k in sorted(d["log"])[-60:]}
+        json.dump(d, open(self.sent_path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
-def next_episode(d):
-    for p in episodes():
-        if os.path.basename(p)[:-5] not in d["sent"]: return p
-    return None
+    def episodes(self): return sorted(glob.glob(os.path.join(self.ep_dir, "*.json")))
+    def done(self, p):
+        eid = os.path.basename(p)[:-5]; return eid in self.d["sent"] or eid in self.d["failed"]
+    def queue(self): return [p for p in self.episodes() if not self.done(p)]
+    def slot_done(self, slot): return f"{today().isoformat()}_{slot}" in self.d["log"]
 
 # ------------------------------------------------------------------ sponsors
 def load_sponsors():
@@ -84,7 +94,8 @@ def build_caption(ep, cfg, sponsor):
 def render_assets(ep, bdir, quality):
     os.makedirs(bdir, exist_ok=True)
     cache = os.path.join(BUILD, "_cache"); os.makedirs(cache, exist_ok=True)
-    engine_sig = hashlib.sha1(open(os.path.join(ROOT, "engine", "model3d.py"), "rb").read()).hexdigest()[:10]
+    sig = b"".join(open(os.path.join(ROOT, "engine", f), "rb").read() for f in ("model3d.py", "olmaliq3d.py"))
+    engine_sig = hashlib.sha1(sig).hexdigest()[:10]
     for name, spec in ep["assets"].items():
         key = hashlib.sha1((json.dumps(spec, sort_keys=True) + quality + engine_sig).encode()).hexdigest()[:16]
         cpng = os.path.join(cache, key + ".png")
@@ -97,51 +108,124 @@ def render_assets(ep, bdir, quality):
         for f in glob.glob(cpng.replace(".png", "*")):
             shutil.copy(f, os.path.join(bdir, name + os.path.basename(f)[len(key):]))
 
+def make_video(ch, path, quality="full", sponsor_id=None, no_sponsor=False, preview_times=None):
+    from engine.compose import render_video
+    ep = json.load(open(path, encoding="utf-8")); eid = ep["id"]
+    sponsor = None if no_sponsor else pick_sponsor(ep, ch.d, sponsor_id)
+    print(f"[{ch.name}] Epizod: {eid} — {ep['title']} ({quality})" + (f" · hamkor: {sponsor['name']}" if sponsor else ""), flush=True)
+    bdir = os.path.join(BUILD, eid + ("_pv" if quality == "preview" else ""))
+    render_assets(ep, bdir, quality)
+    if preview_times:
+        outs, dur = render_video(path, bdir, None, ch.cfg, preview_times, sponsor)
+        print("preview:", outs, "dur", dur); return None
+    os.makedirs(OUT, exist_ok=True)
+    caption = build_caption(ep, ch.cfg, sponsor)
+    mp4 = os.path.join(OUT, f"{eid}.mp4")
+    _, dur = render_video(path, bdir, mp4, ch.cfg, None, sponsor)
+    open(os.path.join(OUT, f"{eid}.txt"), "w", encoding="utf-8").write(caption)
+    print(f"[{ch.name}] Video: {mp4} ({dur:.1f} s)", flush=True)
+    return {"ch": ch, "ep": ep, "mp4": mp4, "caption": caption, "sponsor": sponsor}
+
+def wait_until(hhmm, max_wait=40 * 60):
+    h, m = map(int, hhmm.split(":")); n = now_tk()
+    target = n.replace(hour=h, minute=m, second=0, microsecond=0)
+    wait = (target - n).total_seconds()
+    if 0 < wait <= max_wait:
+        print(f"Yuborish vaqtigacha kutish: {wait / 60:.1f} daqiqa ({hhmm} Toshkent)", flush=True); time.sleep(wait)
+
+def chats():
+    return [c.strip() for c in os.environ.get("TG_MANUAL_CHAT_IDS", "").split(",") if c.strip()]
+
+def run_autogen(ch):
+    from tools import autogen
+    new = autogen.generate(ch)
+    if new:
+        telegram.send_text(autogen.review_text(ch, new), chats())
+        telegram.notify(f"AI {ch.name}: {len(new)} ta yangi ssenariy yozildi va navbatga qo'shildi.")
+    return new
+
+# ------------------------------------------------------------------ main
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument("--channel", default="doxtir", choices=list(CHANNELS)); ap.add_argument("--channels")
     ap.add_argument("--episode"); ap.add_argument("--quality", default="full", choices=["full", "preview"])
     ap.add_argument("--no-send", action="store_true"); ap.add_argument("--check", action="store_true")
+    ap.add_argument("--slot", help="am | pm | auto — jadval sloti (bitta slotga bitta video)")
+    ap.add_argument("--send-at", help="HH:MM yoki auto — render tugagach shu Toshkent vaqtigacha kutib yuborish")
     ap.add_argument("--list", action="store_true"); ap.add_argument("--preview-times")
     ap.add_argument("--sponsor"); ap.add_argument("--no-sponsor", action="store_true")
     ap.add_argument("--mark-sent", action="store_true", help="--episode bilan: yuborilgan deb belgilash")
+    ap.add_argument("--autogen", action="store_true", help="yangi ssenariylarni hozir yozish")
     a = ap.parse_args()
-    d = load_sent()
+    names = [x.strip() for x in a.channels.split(",")] if a.channels else [a.channel]
+    slot = auto_slot() if a.slot == "auto" else a.slot
+    chs = [Channel(n) for n in names]
+    pv = [float(x) for x in a.preview_times.split(",")] if a.preview_times else None
+
     if a.check:
-        print("skip=" + ("true" if d["log"].get(today().isoformat()) else "false")); return
+        print("skip=" + ("true" if slot and all(c.slot_done(slot) for c in chs) else "false")); return
     if a.list:
-        for p in episodes():
-            eid = os.path.basename(p)[:-5]; print(("✅ " if eid in d["sent"] else "⏳ ") + eid)
+        for c in chs:
+            for p in c.episodes():
+                eid = os.path.basename(p)[:-5]
+                print(f"[{c.name}] " + ("✅ " if eid in c.d["sent"] else "❌ " if eid in c.d["failed"] else "⏳ ") + eid)
         return
-    cfg = json.load(open(os.path.join(ROOT, "config.json"), encoding="utf-8"))
-    path = os.path.join(EP_DIR, a.episode + ".json") if a.episode else next_episode(d)
-    if not path:
-        telegram.notify("AI Doxtir: navbatdagi barcha epizodlar yuborilgan. Yangi epizod qo'shing (episodes/).")
-        print("Navbat bo'sh"); return
-    ep = json.load(open(path, encoding="utf-8")); eid = ep["id"]
-    sponsor = None if a.no_sponsor else pick_sponsor(ep, d, a.sponsor)
-    print(f"Epizod: {eid} — {ep['title']} ({a.quality})" + (f" · hamkor: {sponsor['name']}" if sponsor else ""), flush=True)
-    bdir = os.path.join(BUILD, eid + ("_pv" if a.quality == "preview" else ""))
-    render_assets(ep, bdir, a.quality)
-    os.makedirs(OUT, exist_ok=True)
-    caption = build_caption(ep, cfg, sponsor)
-    if a.preview_times:
-        outs, dur = render_video(path, bdir, None, cfg, [float(x) for x in a.preview_times.split(",")], sponsor)
-        print("preview:", outs, "dur", dur); return
-    mp4 = os.path.join(OUT, f"{eid}.mp4")
-    _, dur = render_video(path, bdir, mp4, cfg, None, sponsor)
-    open(os.path.join(OUT, f"{eid}.txt"), "w", encoding="utf-8").write(caption)
-    print(f"Video: {mp4} ({dur:.1f} s)\nTavsif: out/{eid}.txt", flush=True)
-    if a.no_send: return
-    chats = [c.strip() for c in os.environ.get("TG_MANUAL_CHAT_IDS", "").split(",") if c.strip()]
-    telegram.send_manual(mp4, ep, caption, chats)
-    if not a.episode or a.mark_sent:
-        d["sent"] = sorted(set(d["sent"]) | {eid})
-        d["log"].setdefault(today().isoformat(), []).append(eid)
-    if sponsor:
-        d["sponsor_counts"][sponsor["id"]] = d["sponsor_counts"].get(sponsor["id"], 0) + 1
-    save_sent(d)
-    left = sum(1 for p in episodes() if os.path.basename(p)[:-5] not in d["sent"])
-    telegram.notify(f"AI Doxtir: {eid} yuborildi. Navbatda qoldi: {left}")
+    if a.autogen:
+        for c in chs: run_autogen(c)
+        return
+
+    jobs = []
+    for c in chs:
+        if slot and c.slot_done(slot):
+            print(f"[{c.name}] {slot} sloti bugun yuborilgan — o'tkazildi"); continue
+        if a.episode:
+            p = os.path.join(c.ep_dir, a.episode + ".json")
+            if not os.path.exists(p):
+                if len(chs) == 1: raise SystemExit(f"Epizod topilmadi: {p}")
+                continue
+            job = make_video(c, p, a.quality, a.sponsor, a.no_sponsor, pv)
+            if job: job["queued"] = False; jobs.append(job)
+            continue
+        if not c.queue():
+            try: run_autogen(c)
+            except Exception as e:
+                print(f"[{c.name}] autogen xato: {e}"); telegram.notify(f"AI {c.name}: navbat bo'sh, ssenariy yozishda xato: {e}")
+        job = None
+        for p in c.queue():
+            ep = json.load(open(p, encoding="utf-8"))
+            try:
+                job = make_video(c, p, a.quality, a.sponsor, a.no_sponsor, pv)
+                break
+            except Exception as e:
+                if not ep.get("auto"): raise
+                c.d["failed"].append(ep["id"]); c.save()
+                telegram.notify(f"AI {c.name}: avtomatik ssenariy {ep['id']} render bo'lmadi ({e}). Keyingisi olinadi.")
+        if job: job["queued"] = True; jobs.append(job)
+        elif not pv: telegram.notify(f"AI {c.name}: navbatda video yo'q.")
+
+    if a.no_send or not jobs: return
+    if a.send_at:
+        wait_until(SLOTS.get(slot, "06:00") if a.send_at == "auto" else a.send_at)
+    errors = []
+    for j in jobs:
+        c, ep = j["ch"], j["ep"]
+        try:
+            telegram.send_manual(j["mp4"], ep, j["caption"], chats(), c.cfg)
+        except Exception as e:
+            errors.append(f"{c.name}: {e}"); continue
+        if j["queued"] or a.mark_sent:
+            c.d["sent"] = sorted(set(c.d["sent"]) | {ep["id"]})
+            c.d["log"].setdefault(f"{today().isoformat()}_{slot or 'manual'}", []).append(ep["id"])
+        if j["sponsor"]:
+            c.d["sponsor_counts"][j["sponsor"]["id"]] = c.d["sponsor_counts"].get(j["sponsor"]["id"], 0) + 1
+        c.save()
+        left = len(c.queue())
+        telegram.notify(f"AI {c.name}: {ep['id']} yuborildi. Navbatda qoldi: {left}")
+        if j["queued"] and left == 0:
+            try: run_autogen(c)
+            except Exception as e:
+                print(f"[{c.name}] autogen xato: {e}"); telegram.notify(f"AI {c.name}: yangi ssenariy yozishda xato: {e}")
+    if errors: raise SystemExit("Yuborishda xato: " + "; ".join(errors))
 
 if __name__ == "__main__":
     main()

@@ -22,10 +22,22 @@ def notify(text):
         except requests.RequestException:
             pass
 
-def send_manual(path, ep, caption, chat_ids):
+def send_text(text, chat_ids):
+    """Uzun matnni 4000 belgilik bo'laklarga bo'lib yuborish (ssenariylar ko'rib chiqish uchun)."""
+    token = os.environ["TG_BOT_TOKEN"]; parts, cur = [], ""
+    for para in text.split("\n\n"):
+        if len(cur) + len(para) + 2 > 3900 and cur: parts.append(cur); cur = ""
+        cur = (cur + "\n\n" + para) if cur else para
+    if cur: parts.append(cur)
+    for chat in chat_ids:
+        for t in parts:
+            requests.post(API.format(token=token, method="sendMessage"), data={"chat_id": chat, "text": t[:4096]}, timeout=30)
+
+def send_manual(path, ep, caption, chat_ids, cfg=None):
+    cfg = cfg or {}
     token = os.environ["TG_BOT_TOKEN"]
     if not chat_ids: raise RuntimeError("TG_MANUAL_CHAT_IDS bo'sh")
-    head = f"🦷 AI Doxtir — {ep.get('series', '')} #{ep.get('num', '')}: {ep['title']}"
+    head = f"{cfg.get('bot_head', '🦷 AI Doxtir')} — {ep.get('series', '')} #{ep.get('num', '')}: {ep['title']}"
     video_caption = caption if len(caption) <= 1024 else head + "\n\nTavsif matni pastda 👇"
     sent = 0
     for chat in chat_ids:
@@ -41,6 +53,6 @@ def send_manual(path, ep, caption, chat_ids):
             "chat_id": chat, "parse_mode": "HTML",
             "text": f"<b>📝 Tavsif (bosib nusxa oling)</b>\n<pre>{_esc(caption)}</pre>"[:4096]}).raise_for_status()
         requests.post(API.format(token=token, method="sendMessage"), timeout=30, data={
-            "chat_id": chat, "text": f"{head}\n📍 Geoteg: Olmaliq · 🤝 Collab: @ai_olmaliq · muqova: 1-soniya"})
+            "chat_id": chat, "text": f"{head}\n" + cfg.get("post_note", "📍 Geoteg: Olmaliq · muqova: 1-soniya")})
     if not sent:
         raise RuntimeError("Hech bir chatga yuborilmadi — botga /start bosilganini tekshiring")

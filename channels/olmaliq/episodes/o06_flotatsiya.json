@@ -1,0 +1,213 @@
+{
+ "id": "o06_flotatsiya",
+ "num": 6,
+ "series": "Olmaliq sirlari",
+ "title": "Pufakchalar misni qanday ko'taradi",
+ "tags": [
+  "olmaliq",
+  "kon",
+  "talim"
+ ],
+ "assets": {
+  "f0": {
+   "build": "flotation",
+   "params": {
+    "loaded": false,
+    "bubbles": 30
+   }
+  },
+  "f1": {
+   "build": "flotation",
+   "params": {
+    "loaded": true,
+    "bubbles": 45
+   }
+  }
+ },
+ "scenes": [
+  {
+   "type": "hook",
+   "dur": 3.4,
+   "img": "f1",
+   "pos": [
+    540,
+    1170
+   ],
+   "zoom": [
+    1.0,
+    1.15
+   ],
+   "center": "bubble",
+   "lines": [
+    [
+     "Oddiy *pufakcha*",
+     80,
+     "teal"
+    ],
+    [
+     "misni yuqoriga",
+     70,
+     "teal"
+    ],
+    [
+     "*ko'taradi*",
+     88,
+     "copper"
+    ]
+   ]
+  },
+  {
+   "type": "stages",
+   "steps": [
+    {
+     "img": "f0",
+     "dur": 4.0,
+     "view": [
+      0.95,
+      "tank"
+     ],
+     "badge": [
+      "FLOTATSIYA",
+      "teal"
+     ],
+     "lines": [
+      [
+       "Maydalangan ruda",
+       70,
+       "teal"
+      ],
+      [
+       "+ *suv* + reagent",
+       70,
+       "blue"
+      ]
+     ]
+    },
+    {
+     "img": "f0",
+     "dur": 4.0,
+     "view": [
+      1.1,
+      "bottom"
+     ],
+     "badge": [
+      "HAVO",
+      "blue"
+     ],
+     "lines": [
+      [
+       "Pastdan *havo*",
+       76,
+       "blue"
+      ],
+      [
+       "pufakchalari chiqadi",
+       66,
+       "teal"
+      ]
+     ]
+    },
+    {
+     "img": "f1",
+     "dur": 4.4,
+     "view": [
+      1.9,
+      "bubble"
+     ],
+     "badge": [
+      "YOPISHADI",
+      "copper"
+     ],
+     "lines": [
+      [
+       "Mis zarralari",
+       70,
+       "teal"
+      ],
+      [
+       "pufakka *yopishadi*",
+       76,
+       "copper"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "ring",
+       "at": "bubble",
+       "color": "copper",
+       "r": 110,
+       "delay": 0.8
+      }
+     ]
+    },
+    {
+     "img": "f1",
+     "dur": 4.4,
+     "view": [
+      1.4,
+      "froth"
+     ],
+     "badge": [
+      "KO'PIK",
+      "amber"
+     ],
+     "lines": [
+      [
+       "Ko'pik — *mis konsentrati*",
+       66,
+       "amber"
+      ]
+     ]
+    },
+    {
+     "img": "f1",
+     "dur": 4.2,
+     "view": [
+      0.95,
+      "tank"
+     ],
+     "badge": [
+      "YANGI KORPUS",
+      "coral"
+     ],
+     "lines": [
+      [
+       "Yiliga *~917 ming t*",
+       80,
+       "coral"
+      ],
+      [
+       "konsentrat quvvati",
+       62,
+       "teal"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "type": "cta",
+   "dur": 4.6,
+   "img": "f1",
+   "pos": [
+    540,
+    980
+   ],
+   "scale": 0.85,
+   "center": "tank",
+   "lines": [
+    [
+     "Kimyo darsida buni",
+     66,
+     "teal"
+    ],
+    [
+     "*o'rganganmisiz*?",
+     80,
+     "teal"
+    ]
+   ]
+  }
+ ],
+ "instagram": "Oddiy pufakcha misni qanday ko'taradi? 🫧\n\nFlotatsiya: maydalangan ruda suv va reagent bilan aralashtiriladi, pastdan havo yuboriladi. Mis zarralari pufakchalarga yopishib yuqoriga chiqadi va ko'pik — mis konsentrati yig'ib olinadi. Yangi korpus yiliga taxminan 917 ming tonna konsentrat quvvatiga ega.\n\n💬 Kimyo darsida flotatsiyani o'rganganmisiz?\n📍 Olmaliq\n\nManba: kun.uz (2026-mart)\n\n#olmaliq #almalyk #toshkentviloyati #olmaliqliklar #uzbekistan #3d #ai_olmaliq #talim #kimyo"
+}

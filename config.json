@@ -1,11 +1,12 @@
 {
   "handle": "@ai_doxtir",
   "logo": "assets/logos/ai_doxtir_icon.png",
-  "stamp": "OLMALIQDA TAYYORLANDI",
   "cta_title": "Obuna bo'ling: @ai_doxtir",
   "cta_sub": "@ai_doxtir × @ai_olmaliq",
   "cta_footer": "Olmaliqdan — Olmaliq uchun",
   "disclaimer": "Ma'lumot uchun. Tashxis va davolashni shifokor belgilaydi.",
   "caption_footer": "🏔 Olmaliqdan — Olmaliq uchun · @ai_olmaliq bilan hamkorlikda",
-  "collab": "@ai_olmaliq"
+  "collab": "@ai_olmaliq",
+  "bot_head": "🦷 AI Doxtir",
+  "post_note": "📍 Geoteg: Olmaliq · 🤝 Collab: @ai_olmaliq · muqova: 1-soniya"
 }

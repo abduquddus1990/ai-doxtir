@@ -5,3 +5,4 @@ opencv-python-headless>=4.9
 scipy>=1.11
 requests>=2.31
 python-dotenv>=1.0
+anthropic>=2.13

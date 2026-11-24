@@ -450,6 +450,8 @@ def build_sprite(p):
 
 BUILDERS = {"section": build_section, "wisdom": build_wisdom, "front": build_front, "molar": build_molar,
             "implant_parts": build_implant_parts, "sprite": build_sprite}
+from engine import olmaliq3d as _olm  # @ai_olmaliq quruvchilari
+_olm.register(sys.modules[__name__]); BUILDERS.update(_olm.BUILDERS)
 
 # ------------------------------------------------------------------ lighting / render
 CAM = {}

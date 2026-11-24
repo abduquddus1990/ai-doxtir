@@ -1,0 +1,221 @@
+{
+ "id": "o04_13_metall",
+ "num": 4,
+ "series": "Olmaliq sirlari",
+ "title": "Bitta toshda 13 xil metall",
+ "tags": [
+  "olmaliq",
+  "kon"
+ ],
+ "assets": {
+  "r0": {
+   "build": "ore",
+   "params": {
+    "split": 0
+   }
+  },
+  "r1": {
+   "build": "ore",
+   "params": {
+    "split": 0.5
+   }
+  },
+  "r2": {
+   "build": "ore",
+   "params": {
+    "split": 1
+   }
+  },
+  "gold": {
+   "build": "osprite",
+   "params": {
+    "kind": "gold"
+   },
+   "samples": 24
+  }
+ },
+ "scenes": [
+  {
+   "type": "hook",
+   "dur": 3.4,
+   "img": "r0",
+   "pos": [
+    540,
+    1170
+   ],
+   "zoom": [
+    1.0,
+    1.15
+   ],
+   "center": "center",
+   "lines": [
+    [
+     "Oddiy *tosh*ga",
+     80,
+     "teal"
+    ],
+    [
+     "o'xshaydi, lekin...",
+     70,
+     "teal"
+    ]
+   ]
+  },
+  {
+   "type": "stages",
+   "steps": [
+    {
+     "img": "r0",
+     "dur": 4.0,
+     "view": [
+      1.1,
+      "center"
+     ],
+     "badge": [
+      "RUDA",
+      "copper"
+     ],
+     "lines": [
+      [
+       "Olmaliq rudasida",
+       72,
+       "teal"
+      ],
+      [
+       "*yaltiroq tomirlar* bor",
+       70,
+       "copper"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "sparkle",
+       "at": "center",
+       "delay": 0.8
+      }
+     ]
+    },
+    {
+     "img": "r1",
+     "dur": 4.0,
+     "view": [
+      1.0,
+      "center"
+     ],
+     "badge": [
+      "AJRATAMIZ",
+      "teal"
+     ],
+     "lines": [
+      [
+       "Ichidan *metallar*",
+       76,
+       "teal"
+      ],
+      [
+       "chiqa boshlaydi",
+       70,
+       "teal"
+      ]
+     ]
+    },
+    {
+     "img": "r2",
+     "dur": 4.6,
+     "view": [
+      0.95,
+      "center"
+     ],
+     "badge": [
+      "MIS · OLTIN · KUMUSH",
+      "amber"
+     ],
+     "lines": [
+      [
+       "Mis, oltin, kumush,",
+       66,
+       "teal"
+      ],
+      [
+       "*molibden, selen*...",
+       70,
+       "amber"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "ring",
+       "at": "m0",
+       "color": "copper",
+       "r": 60,
+       "delay": 0.6
+      },
+      {
+       "kind": "ring",
+       "at": "m1",
+       "color": "amber",
+       "r": 60,
+       "delay": 1.0
+      },
+      {
+       "kind": "ring",
+       "at": "m2",
+       "color": "grey",
+       "r": 60,
+       "delay": 1.4
+      }
+     ]
+    },
+    {
+     "img": "r2",
+     "dur": 4.2,
+     "view": [
+      0.95,
+      "center"
+     ],
+     "badge": [
+      "JAMI",
+      "coral"
+     ],
+     "lines": [
+      [
+       "*13 xil* element",
+       92,
+       "coral"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "sparkle",
+       "at": "m6",
+       "delay": 0.6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "cta",
+   "dur": 4.6,
+   "img": "gold",
+   "pos": [
+    540,
+    950
+   ],
+   "scale": 1.3,
+   "lines": [
+    [
+     "Qaysi metall sizni",
+     70,
+     "teal"
+    ],
+    [
+     "*hayratlantirdi*?",
+     80,
+     "amber"
+    ]
+   ]
+  }
+ ],
+ "instagram": "Oddiy toshga o'xshaydi, lekin ichida 13 xil metall bor ✨\n\nOlmaliq kombinati rudasidan oltin, mis, kumush, molibden, selen kabi 13 turdagi element ajratib olinadi.\n\n💬 Qaysi metall sizni hayratlantirdi?\n📍 Olmaliq\n\nManba: daryo.uz, president.uz\n\n#olmaliq #almalyk #toshkentviloyati #olmaliqliklar #uzbekistan #3d #ai_olmaliq #zargarlik"
+}

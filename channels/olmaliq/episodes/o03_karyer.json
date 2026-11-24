@@ -1,0 +1,215 @@
+{
+ "id": "o03_karyer",
+ "num": 3,
+ "series": "Olmaliq sirlari",
+ "title": "Qalmoqqir karyeri ichiga tushamiz",
+ "tags": [
+  "olmaliq",
+  "kon"
+ ],
+ "assets": {
+  "q0": {
+   "build": "quarry",
+   "params": {
+    "trucks": 3
+   }
+  },
+  "q1": {
+   "build": "quarry",
+   "params": {
+    "trucks": 6
+   }
+  },
+  "truck": {
+   "build": "osprite",
+   "params": {
+    "kind": "truck"
+   },
+   "samples": 24
+  }
+ },
+ "scenes": [
+  {
+   "type": "hook",
+   "dur": 3.4,
+   "img": "q0",
+   "pos": [
+    540,
+    1170
+   ],
+   "zoom": [
+    0.95,
+    1.12
+   ],
+   "center": "center",
+   "lines": [
+    [
+     "Olmaliq yonidagi",
+     70,
+     "teal"
+    ],
+    [
+     "*ulkan chuqurlik*",
+     88,
+     "copper"
+    ],
+    [
+     "ichiga tushamiz",
+     70,
+     "teal"
+    ]
+   ]
+  },
+  {
+   "type": "stages",
+   "steps": [
+    {
+     "img": "q0",
+     "dur": 4.2,
+     "view": [
+      1.05,
+      "center"
+     ],
+     "badge": [
+      "QALMOQQIR",
+      "copper"
+     ],
+     "lines": [
+      [
+       "Ochiq usuldagi",
+       70,
+       "teal"
+      ],
+      [
+       "*mis* koni",
+       86,
+       "copper"
+      ]
+     ]
+    },
+    {
+     "img": "q0",
+     "dur": 4.2,
+     "view": [
+      1.5,
+      "bench"
+     ],
+     "badge": [
+      "POG'ONALAR",
+      "teal"
+     ],
+     "lines": [
+      [
+       "Karyer *zinapoya* kabi",
+       70,
+       "teal"
+      ],
+      [
+       "pog'onama-pog'ona chuqurlashadi",
+       54,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "ring",
+       "at": "bench",
+       "color": "amber",
+       "r": 110,
+       "delay": 0.8
+      }
+     ]
+    },
+    {
+     "img": "q1",
+     "dur": 4.2,
+     "view": [
+      1.15,
+      "truck"
+     ],
+     "badge": [
+      "MIQYOS",
+      "amber"
+     ],
+     "lines": [
+      [
+       "Bu nuqtalar —",
+       70,
+       "teal"
+      ],
+      [
+       "*ulkan yuk mashinalari*",
+       70,
+       "amber"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "ring",
+       "at": "truck",
+       "color": "coral",
+       "r": 70,
+       "delay": 0.6
+      }
+     ]
+    },
+    {
+     "img": "q1",
+     "dur": 4.4,
+     "view": [
+      1.2,
+      "bottom"
+     ],
+     "badge": [
+      "ZANJIR BOSHI",
+      "coral"
+     ],
+     "lines": [
+      [
+       "Kombinat zanjirining",
+       66,
+       "teal"
+      ],
+      [
+       "*boshlang'ich nuqtasi*",
+       76,
+       "coral"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "arrow",
+       "from": "rim",
+       "at": "bottom",
+       "color": "coral"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "cta",
+   "dur": 4.6,
+   "img": "q1",
+   "pos": [
+    540,
+    980
+   ],
+   "scale": 0.9,
+   "center": "center",
+   "lines": [
+    [
+     "Keyingi qism: toshdan",
+     64,
+     "teal"
+    ],
+    [
+     "*mis sim*gacha",
+     80,
+     "copper"
+    ]
+   ]
+  }
+ ],
+ "instagram": "Olmaliq yonidagi ulkan chuqurlik ichiga tushamiz ⛏\n\nQalmoqqir — ochiq usuldagi mis koni. Karyer pog'onama-pog'ona chuqurlashadi, pog'onalardagi kichik nuqtalar aslida ulkan yuk mashinalari. Bu yer — kombinat texnologik zanjirining boshlang'ich nuqtasi.\n\n💬 Karyerni yaqindan ko'rganmisiz?\n📍 Olmaliq\n\nManba: yuz.uz\n\n#olmaliq #almalyk #toshkentviloyati #olmaliqliklar #uzbekistan #3d #ai_olmaliq"
+}

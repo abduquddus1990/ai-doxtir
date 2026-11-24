@@ -1,0 +1,209 @@
+{
+ "id": "o05_mis_sim",
+ "num": 5,
+ "series": "Olmaliq sirlari",
+ "title": "Toshdan mis simgacha",
+ "tags": [
+  "olmaliq",
+  "kon"
+ ],
+ "assets": {
+  "r0": {
+   "build": "ore",
+   "params": {
+    "split": 0
+   }
+  },
+  "f0": {
+   "build": "flotation",
+   "params": {}
+  },
+  "cath": {
+   "build": "osprite",
+   "params": {
+    "kind": "cathode"
+   },
+   "samples": 24
+  },
+  "wire": {
+   "build": "osprite",
+   "params": {
+    "kind": "wire"
+   },
+   "samples": 24
+  },
+  "phone": {
+   "build": "osprite",
+   "params": {
+    "kind": "phone"
+   },
+   "samples": 24
+  }
+ },
+ "scenes": [
+  {
+   "type": "hook",
+   "dur": 3.4,
+   "img": "phone",
+   "pos": [
+    540,
+    1170
+   ],
+   "zoom": [
+    1.3,
+    1.45
+   ],
+   "center": "center",
+   "lines": [
+    [
+     "Zaryadlagichingizdagi",
+     70,
+     "teal"
+    ],
+    [
+     "*mis* qayerdan",
+     84,
+     "copper"
+    ],
+    [
+     "kelgan?",
+     72,
+     "teal"
+    ]
+   ]
+  },
+  {
+   "type": "stages",
+   "steps": [
+    {
+     "img": "r0",
+     "dur": 3.6,
+     "view": [
+      1.0,
+      "center"
+     ],
+     "badge": [
+      "1 · RUDA",
+      "copper"
+     ],
+     "lines": [
+      [
+       "Karyerdan *ruda*",
+       76,
+       "teal"
+      ]
+     ]
+    },
+    {
+     "img": "f0",
+     "dur": 3.8,
+     "view": [
+      0.95,
+      "tank"
+     ],
+     "badge": [
+      "2 · BOYITISH",
+      "teal"
+     ],
+     "lines": [
+      [
+       "Ruda maydalanib,",
+       66,
+       "teal"
+      ],
+      [
+       "*konsentrat* olinadi",
+       70,
+       "teal"
+      ]
+     ]
+    },
+    {
+     "img": "cath",
+     "dur": 3.8,
+     "view": [
+      1.8,
+      "center"
+     ],
+     "badge": [
+      "3 · MIS KATOD",
+      "amber"
+     ],
+     "lines": [
+      [
+       "Toza *mis plastina*",
+       76,
+       "copper"
+      ]
+     ]
+    },
+    {
+     "img": "wire",
+     "dur": 3.6,
+     "view": [
+      1.8,
+      "center"
+     ],
+     "badge": [
+      "4 · SIM",
+      "copper"
+     ],
+     "lines": [
+      [
+       "Plastinadan —",
+       70,
+       "teal"
+      ],
+      [
+       "*mis sim*",
+       86,
+       "copper"
+      ]
+     ]
+    },
+    {
+     "img": "phone",
+     "dur": 3.8,
+     "view": [
+      1.7,
+      "center"
+     ],
+     "badge": [
+      "5 · QO'LINGIZDA",
+      "coral"
+     ],
+     "lines": [
+      [
+       "Telefon *zaryadlagichi*",
+       72,
+       "teal"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "type": "cta",
+   "dur": 4.6,
+   "img": "wire",
+   "pos": [
+    540,
+    950
+   ],
+   "scale": 1.4,
+   "lines": [
+    [
+     "Uyingizda nechta",
+     70,
+     "teal"
+    ],
+    [
+     "*mis sim* bor?",
+     80,
+     "copper"
+    ]
+   ]
+  }
+ ],
+ "instagram": "Telefon zaryadlagichingizdagi mis qayerdan kelgan? 🔌\n\nYo'l shunday: karyerdan ruda → maydalash va boyitish (konsentrat) → toza mis katod plastinalari → mis sim → kabel va zaryadlagich.\n\n💬 Uyingizdagi qaysi buyumda mis bor deb o'ylaysiz?\n📍 Olmaliq\n\nManba: yuz.uz, daryo.uz\n\n#olmaliq #almalyk #toshkentviloyati #olmaliqliklar #uzbekistan #3d #ai_olmaliq #elektronika"
+}

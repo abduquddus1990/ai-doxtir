@@ -1,6 +1,6 @@
 # AI Doxtir — 3D tibbiy videolar (@ai_doxtir × @ai_olmaliq)
 
-Har kuni belgilangan vaqtda navbatdagi epizodni **3D render qiladi → montaj qiladi → @ai_doxtirBot orqali video va tavsif matnini yuboradi**. Videoni Instagram'ga qo'lda joylaysiz, tavsifni botdan nusxalab qo'yasiz. Sxema geoilm bilan bir xil.
+Ikki kanal: **@ai_doxtir** (stomatologiya) va **@ai_olmaliq** (Olmaliq shahri). Har kuni **06:00 va 19:00** (Toshkent) da har bir kanalning navbatdagi epizodini **3D render qiladi → montaj qiladi → @ai_doxtirBot orqali video va tavsif matnini yuboradi**. Videoni Instagram'ga qo'lda joylaysiz, tavsifni botdan nusxalab qo'yasiz. Sxema geoilm bilan bir xil.
 
 ## Papkalar
 ```
@@ -19,6 +19,13 @@ data/sent.json         nima yuborilgan, hamkor hisobi
 tools/make_episodes.py epizod JSON'larini yozadi
 ```
 
+## Jadval va avtomatik ssenariylar
+- `.github/workflows/ai_doxtir.yml`: render 05:35 / 18:35 da boshlanadi, video aniq **06:00 / 19:00** da yuboriladi (`run.py --send-at auto`). Zaxira: 06:20 / 19:20.
+- Kanallar: `run.py` → `CHANNELS`. doxtir: `config.json`, `episodes/`, `data/sent.json`; olmaliq: `channels/olmaliq/config.json`, `channels/olmaliq/episodes/`, `data/sent_olmaliq.json`.
+- Navbat tugasa `tools/autogen.py` Claude API (veb-qidiruv bilan) orqali keyingi 10 ta ssenariyni yozadi, tekshiradi, navbatga qo'shadi va matnini botga ko'rib chiqish uchun yuboradi. Kerak: **`ANTHROPIC_API_KEY`** Secret.
+- ai_olmaliq 3D sahnalari: `engine/olmaliq3d.py` (terrain, quarry, ore, flotation, globe, shaft, osprite). Boshlang'ich 10 epizod: `tools/make_olmaliq.py`.
+- Globus teksturasi: NASA Blue Marble (public domain), `assets/textures/earth.jpg`.
+
 ## Bot nima yuboradi
 1. **Video** — izohida tavsif matni to'liq (1024 belgigacha).
 2. **📝 Tavsif** — bosib nusxa olinadigan blokda to'liq matn: hook, mazmun, savol, 📍 Olmaliq, disclaimer, heshteglar, hamkor qatori (bo'lsa), "Olmaliqdan — Olmaliq uchun".
@@ -30,12 +37,13 @@ tools/make_episodes.py epizod JSON'larini yozadi
 3. **Settings → Secrets and variables → Actions**:
    - `TG_BOT_TOKEN` — @ai_doxtirBot tokeni (@BotFather)
    - `TG_MANUAL_CHAT_IDS` — Telegram ID raqamingiz (bir nechta bo'lsa vergul bilan)
-   - `TG_ADMIN_CHAT_ID` — ixtiyoriy, xato xabarlari uchun
+   - `TG_ADMIN_CHAT_ID` — ixtiyoriy, xato xabarlari uchun (vergul bilan bir nechta)
+   - `ANTHROPIC_API_KEY` — avtomatik ssenariy yozish uchun (console.anthropic.com)
 4. @ai_doxtirBot'ga **/start** bosing.
 5. **Settings → Actions → General → Workflow permissions → Read and write**.
 6. Sinov: **Actions → AI Doxtir video → Run workflow**. ~15–20 daqiqada bot video yuboradi.
 
-Jadval vaqtini `.github/workflows/ai_doxtir.yml` dagi `cron` qatorlarida o'zgartirasiz (UTC = Toshkent − 5 soat).
+Jadval vaqtini `.github/workflows/ai_doxtir.yml` dagi `cron` qatorlarida va `run.py` → `SLOTS` da o'zgartirasiz (UTC = Toshkent − 5 soat).
 
 ## VS Code'da ishlash (lokal)
 1. Python **3.13** o'rnating (Blender `bpy` faqat shu versiya bilan ishlaydi).

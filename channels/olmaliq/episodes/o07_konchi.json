@@ -1,0 +1,220 @@
+{
+ "id": "o07_konchi",
+ "num": 7,
+ "series": "Olmaliq sirlari",
+ "title": "Yer ostida konchining bir kuni",
+ "tags": [
+  "olmaliq",
+  "kon",
+  "kasb"
+ ],
+ "assets": {
+  "s0": {
+   "build": "shaft",
+   "params": {
+    "cage": 0.05
+   }
+  },
+  "s1": {
+   "build": "shaft",
+   "params": {
+    "cage": 0.55
+   }
+  },
+  "s2": {
+   "build": "shaft",
+   "params": {
+    "cage": 1.0
+   }
+  },
+  "helmet": {
+   "build": "osprite",
+   "params": {
+    "kind": "helmet"
+   },
+   "samples": 24
+  }
+ },
+ "scenes": [
+  {
+   "type": "hook",
+   "dur": 3.4,
+   "img": "s0",
+   "pos": [
+    540,
+    1100
+   ],
+   "zoom": [
+    0.85,
+    0.95
+   ],
+   "center": "surface",
+   "lines": [
+    [
+     "Yer ostida",
+     76,
+     "teal"
+    ],
+    [
+     "*bir kun*",
+     92,
+     "copper"
+    ],
+    [
+     "qanday o'tadi?",
+     70,
+     "teal"
+    ]
+   ]
+  },
+  {
+   "type": "stages",
+   "steps": [
+    {
+     "img": "s0",
+     "dur": 4.0,
+     "view": [
+      1.4,
+      "headframe"
+     ],
+     "badge": [
+      "TONG",
+      "amber"
+     ],
+     "lines": [
+      [
+       "Smena *minora* oldida",
+       70,
+       "teal"
+      ],
+      [
+       "boshlanadi",
+       66,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "label",
+       "at": "headframe",
+       "text": "Minora",
+       "color": "copper",
+       "to": [
+        330,
+        760
+       ],
+       "side": "left",
+       "delay": 1.0
+      }
+     ]
+    },
+    {
+     "img": "s1",
+     "dur": 4.0,
+     "view": [
+      1.0,
+      "cage"
+     ],
+     "badge": [
+      "PASTGA",
+      "teal"
+     ],
+     "lines": [
+      [
+       "*Lift* konchilarni",
+       72,
+       "teal"
+      ],
+      [
+       "chuqurga tushiradi",
+       66,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "ring",
+       "at": "cage",
+       "color": "amber",
+       "r": 90,
+       "delay": 0.7
+      }
+     ]
+    },
+    {
+     "img": "s2",
+     "dur": 4.4,
+     "view": [
+      1.0,
+      "tunnel"
+     ],
+     "badge": [
+      "TUNNEL",
+      "copper"
+     ],
+     "lines": [
+      [
+       "Tunnelda — *ruda tomiri*",
+       66,
+       "copper"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "sparkle",
+       "at": "vein",
+       "delay": 0.8
+      }
+     ]
+    },
+    {
+     "img": "helmet",
+     "dur": 4.2,
+     "view": [
+      1.6,
+      "center"
+     ],
+     "badge": [
+      "XAVFSIZLIK",
+      "coral"
+     ],
+     "lines": [
+      [
+       "Kaska, fonar, nazorat —",
+       62,
+       "teal"
+      ],
+      [
+       "*birinchi o'rinda*",
+       76,
+       "coral"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "type": "cta",
+   "dur": 4.6,
+   "img": "helmet",
+   "pos": [
+    540,
+    950
+   ],
+   "scale": 1.2,
+   "lines": [
+    [
+     "Oilangizda *konchi* bormi?",
+     66,
+     "teal"
+    ],
+    [
+     "Izohda yozing",
+     60,
+     "teal"
+    ]
+   ]
+  }
+ ],
+ "instagram": "Yer ostida konchining bir kuni qanday o'tadi? ⛑\n\nSmena minora oldida boshlanadi, lift konchilarni chuqurga tushiradi, tunnellarda ruda tomirlari qaziladi. Kaska, fonar va xavfsizlik nazorati — har doim birinchi o'rinda.\n\n💬 Oilangizda konchi bormi? Unga rahmat ayting 👇\n📍 Olmaliq\n\nManba: Olmaliq KMK ochiq ma'lumotlari\n\n#olmaliq #almalyk #toshkentviloyati #olmaliqliklar #uzbekistan #3d #ai_olmaliq #kasb #konchi"
+}

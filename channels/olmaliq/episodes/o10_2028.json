@@ -1,0 +1,213 @@
+{
+ "id": "o10_2028",
+ "num": 10,
+ "series": "Olmaliq sirlari",
+ "title": "Olmaliq 2028-yilda",
+ "tags": [
+  "olmaliq",
+  "kelajak"
+ ],
+ "assets": {
+  "k0": {
+   "build": "terrain",
+   "params": {
+    "trees": 6,
+    "city": 0.85,
+    "seed": 11
+   }
+  },
+  "k1": {
+   "build": "terrain",
+   "params": {
+    "trees": 10,
+    "city": 1.0,
+    "future": true,
+    "pin": true,
+    "seed": 11
+   }
+  },
+  "cath": {
+   "build": "osprite",
+   "params": {
+    "kind": "cathode"
+   },
+   "samples": 24
+  },
+  "gold": {
+   "build": "osprite",
+   "params": {
+    "kind": "gold"
+   },
+   "samples": 24
+  },
+  "silver": {
+   "build": "osprite",
+   "params": {
+    "kind": "silver"
+   },
+   "samples": 24
+  }
+ },
+ "scenes": [
+  {
+   "type": "hook",
+   "dur": 3.4,
+   "img": "k1",
+   "pos": [
+    540,
+    1160
+   ],
+   "zoom": [
+    0.95,
+    1.1
+   ],
+   "center": "city",
+   "lines": [
+    [
+     "*2028*-yilda",
+     92,
+     "copper"
+    ],
+    [
+     "Olmaliq qanday",
+     70,
+     "teal"
+    ],
+    [
+     "bo'ladi?",
+     72,
+     "teal"
+    ]
+   ]
+  },
+  {
+   "type": "stages",
+   "steps": [
+    {
+     "img": "k0",
+     "dur": 3.8,
+     "view": [
+      1.15,
+      "city"
+     ],
+     "badge": [
+      "BUGUN",
+      "teal"
+     ],
+     "lines": [
+      [
+       "Bugungi shahar",
+       72,
+       "teal"
+      ]
+     ]
+    },
+    {
+     "img": "k1",
+     "dur": 4.2,
+     "view": [
+      1.15,
+      "city"
+     ],
+     "badge": [
+      "REJA",
+      "copper"
+     ],
+     "lines": [
+      [
+       "Yangi quvvatlar",
+       70,
+       "teal"
+      ],
+      [
+       "*rejalashtirilgan*",
+       78,
+       "copper"
+      ]
+     ]
+    },
+    {
+     "img": "cath",
+     "dur": 3.8,
+     "view": [
+      1.7,
+      "center"
+     ],
+     "badge": [
+      "MIS",
+      "copper"
+     ],
+     "lines": [
+      [
+       "Yiliga *400 ming t*",
+       80,
+       "copper"
+      ]
+     ]
+    },
+    {
+     "img": "gold",
+     "dur": 3.8,
+     "view": [
+      1.7,
+      "center"
+     ],
+     "badge": [
+      "OLTIN",
+      "amber"
+     ],
+     "lines": [
+      [
+       "Yiliga *50 t*",
+       88,
+       "amber"
+      ]
+     ]
+    },
+    {
+     "img": "silver",
+     "dur": 3.8,
+     "view": [
+      1.7,
+      "center"
+     ],
+     "badge": [
+      "KUMUSH",
+      "grey"
+     ],
+     "lines": [
+      [
+       "Yiliga *270 t*",
+       88,
+       "grey"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "type": "cta",
+   "dur": 4.6,
+   "img": "k1",
+   "pos": [
+    540,
+    980
+   ],
+   "scale": 0.9,
+   "center": "center",
+   "lines": [
+    [
+     "2028-yilda siz",
+     70,
+     "teal"
+    ],
+    [
+     "*qayerda* bo'lasiz?",
+     80,
+     "copper"
+    ]
+   ]
+  }
+ ],
+ "instagram": "2028-yilda Olmaliq qanday bo'ladi? 🚀\n\nRejaga ko'ra, 2028-yilga borib kombinatning yillik quvvati 400 ming tonna mis, 50 tonna oltin va 270 tonna kumushga yetkazilishi rejalashtirilgan.\n\n💬 2028-yilda o'zingizni qayerda ko'rasiz?\n📍 Olmaliq\n\nManba: president.uz\n\n#olmaliq #almalyk #toshkentviloyati #olmaliqliklar #uzbekistan #3d #ai_olmaliq #kelajak"
+}

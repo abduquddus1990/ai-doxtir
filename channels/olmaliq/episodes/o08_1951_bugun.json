@@ -1,0 +1,178 @@
+{
+ "id": "o08_1951_bugun",
+ "num": 8,
+ "series": "Olmaliq sirlari",
+ "title": "Olmaliq: 1951 va bugun",
+ "tags": [
+  "olmaliq",
+  "tarix"
+ ],
+ "assets": {
+  "c0": {
+   "build": "terrain",
+   "params": {
+    "trees": 14,
+    "city": 0.12,
+    "seed": 8
+   }
+  },
+  "c1": {
+   "build": "terrain",
+   "params": {
+    "trees": 8,
+    "city": 0.5,
+    "seed": 8
+   }
+  },
+  "c2": {
+   "build": "terrain",
+   "params": {
+    "trees": 4,
+    "city": 1.0,
+    "pin": true,
+    "seed": 8
+   }
+  }
+ },
+ "scenes": [
+  {
+   "type": "hook",
+   "dur": 3.4,
+   "img": "c0",
+   "pos": [
+    540,
+    1160
+   ],
+   "zoom": [
+    1.0,
+    1.1
+   ],
+   "center": "city",
+   "lines": [
+    [
+     "*1951*-yildan",
+     86,
+     "copper"
+    ],
+    [
+     "bugungacha",
+     72,
+     "teal"
+    ],
+    [
+     "bir daqiqada",
+     70,
+     "teal"
+    ]
+   ]
+  },
+  {
+   "type": "stages",
+   "steps": [
+    {
+     "img": "c0",
+     "dur": 4.2,
+     "view": [
+      1.35,
+      "city"
+     ],
+     "badge": [
+      "1951",
+      "copper"
+     ],
+     "lines": [
+      [
+       "10-iyul: Olmaliq",
+       70,
+       "teal"
+      ],
+      [
+       "*shahar* maqomini oldi",
+       70,
+       "teal"
+      ]
+     ]
+    },
+    {
+     "img": "c1",
+     "dur": 4.2,
+     "view": [
+      1.2,
+      "city"
+     ],
+     "badge": [
+      "O'SISH",
+      "teal"
+     ],
+     "lines": [
+      [
+       "Kombinat bilan",
+       70,
+       "teal"
+      ],
+      [
+       "shahar *kengaydi*",
+       74,
+       "teal"
+      ]
+     ]
+    },
+    {
+     "img": "c2",
+     "dur": 4.6,
+     "view": [
+      1.05,
+      "city"
+     ],
+     "badge": [
+      "BUGUN",
+      "coral"
+     ],
+     "lines": [
+      [
+       "Bugun — viloyatning",
+       66,
+       "teal"
+      ],
+      [
+       "*yirik sanoat shahri*",
+       72,
+       "coral"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "sparkle",
+       "at": "pin",
+       "delay": 0.8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "cta",
+   "dur": 4.6,
+   "img": "c2",
+   "pos": [
+    540,
+    980
+   ],
+   "scale": 0.9,
+   "center": "center",
+   "lines": [
+    [
+     "Eski Olmaliq rasmi",
+     66,
+     "teal"
+    ],
+    [
+     "bormi? *Ulashing*",
+     72,
+     "teal"
+    ]
+   ]
+  }
+ ],
+ "instagram": "Olmaliq: 1951-yildan bugungacha bir daqiqada 🏙\n\n1951-yil 10-iyulda Olmaliq shahar maqomini oldi. Kombinat rivojlangani sari shahar ham kengaydi va bugun Toshkent viloyatining yirik sanoat shaharlaridan biri.\n\n💬 Eski Olmaliq suratlari bormi? Izohda ulashing\n📍 Olmaliq\n\nManba: Britannica, Wikipedia\n\n#olmaliq #almalyk #toshkentviloyati #olmaliqliklar #uzbekistan #3d #ai_olmaliq #tarix"
+}

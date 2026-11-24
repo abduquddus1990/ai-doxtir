@@ -11,7 +11,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FONT = os.path.join(ROOT, "assets", "fonts", "Montserrat.ttf")
 COL = {"teal": (18, 168, 154), "coral": (255, 77, 94), "amber": (255, 176, 59), "orange": (240, 120, 40),
        "ink": (29, 42, 51), "blue": (52, 132, 220), "purple": (140, 90, 210), "green": (60, 170, 90), "white": (255, 255, 255),
-       "dentin": (176, 128, 40), "grey": (90, 105, 115)}
+       "dentin": (176, 128, 40), "grey": (90, 105, 115), "copper": (184, 103, 58)}
 def C(c): return COL[c] if isinstance(c, str) else tuple(c)
 
 _fc = {}
@@ -448,7 +448,8 @@ class Episode:
         while f2.size > 22 and f2.getlength(sub) > W - 300: f2 = font(f2.size - 2, "SemiBold")
         d.text((W / 2, 1568), sub, font=f2, fill=(*COL["ink"], int(205 * a)), anchor="mm")
         if cfg.get("cta_footer"): d.text((W / 2, 1700), cfg["cta_footer"], font=font(36, "Bold"), fill=(*COL["ink"], int(220 * a)), anchor="mm")
-        d.text((W / 2, 1830), cfg["disclaimer"], font=font(26, "SemiBold"), fill=(*COL["grey"], int(255 * a)), anchor="mm")
+        disc = self.ep.get("disclaimer", cfg.get("disclaimer", ""))
+        if disc: d.text((W / 2, 1830), disc, font=font(26, "SemiBold"), fill=(*COL["grey"], int(255 * a)), anchor="mm")
 
     def frame(self, t):
         c = self.BG.copy()

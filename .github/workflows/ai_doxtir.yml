@@ -1,17 +1,29 @@
 name: AI Doxtir video
 
-# Toshkent vaqti = UTC + 5. Har kuni 1 ta video: 19:30 (asosiy), 20:30 (zaxira).
-# Zaxira ish faqat asosiy ish yubormagan bo'lsa ishlaydi (data/sent.json).
+# Toshkent vaqti = UTC + 5. Har kuni 2 slot, har slotda @ai_doxtir + @ai_olmaliq videolari:
+#   06:00 (am) va 19:00 (pm). Render ~25 daqiqa oldin boshlanadi, video aniq vaqtda yuboriladi (run.py --send-at auto).
+#   Zaxira ishlar (06:20, 19:20) faqat slot hali yuborilmagan bo'lsa ishlaydi (data/sent*.json).
 on:
   schedule:
-    - cron: "30 14 * * *"    # 19:30 Toshkent
-    - cron: "30 15 * * *"    # 20:30 Toshkent — zaxira
+    - cron: "35 0 * * *"     # 05:35 Toshkent → 06:00 da yuboradi
+    - cron: "20 1 * * *"     # 06:20 — zaxira
+    - cron: "35 13 * * *"    # 18:35 Toshkent → 19:00 da yuboradi
+    - cron: "20 14 * * *"    # 19:20 — zaxira
   workflow_dispatch:
     inputs:
+      channel:
+        description: "Kanal"
+        type: choice
+        options: [ikkalasi, doxtir, olmaliq]
+        default: ikkalasi
       episode:
-        description: "Epizod id (bo'sh = navbatdagi). Masalan: e03_implant"
+        description: "Epizod id (bo'sh = navbatdagi). Masalan: e03_implant yoki o01_nomi. Aniq epizod navbatni o'zgartirmaydi."
         required: false
         default: ""
+      mark_sent:
+        description: "Aniq epizodni yuborilgan deb belgilash (jadvalda qayta kelmaydi)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -23,27 +35,36 @@ concurrency:
 jobs:
   video:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v5
         with: { python-version: "3.13", cache: pip }
 
-      - name: Bugun yuborilganmi
+      - name: Reja
         id: plan
         run: |
-          if [ "${{ github.event_name }}" = "schedule" ]; then python run.py --check >> "$GITHUB_OUTPUT"; else echo "skip=false" >> "$GITHUB_OUTPUT"; fi
+          CH="doxtir,olmaliq"
+          case "${{ github.event.inputs.channel }}" in doxtir) CH=doxtir;; olmaliq) CH=olmaliq;; esac
+          echo "channels=$CH" >> "$GITHUB_OUTPUT"
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            python run.py --check --channels "$CH" --slot auto >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Secretlar tekshiruvi
         if: steps.plan.outputs.skip != 'true'
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_MANUAL_CHAT_IDS: ${{ secrets.TG_MANUAL_CHAT_IDS }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           for v in TG_BOT_TOKEN TG_MANUAL_CHAT_IDS; do
             if [ -z "${!v}" ]; then echo "::error::Secret $v kiritilmagan: Settings -> Secrets and variables -> Actions"; exit 1; fi
           done
+          [ -n "$ANTHROPIC_API_KEY" ] || echo "::warning::ANTHROPIC_API_KEY yo'q — navbat tugaganda yangi ssenariylar yozilmaydi"
 
       - name: Tizim paketlari
         if: steps.plan.outputs.skip != 'true'
@@ -59,20 +80,29 @@ jobs:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_ADMIN_CHAT_ID: ${{ secrets.TG_ADMIN_CHAT_ID }}
           TG_MANUAL_CHAT_IDS: ${{ secrets.TG_MANUAL_CHAT_IDS }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          if [ -n "${{ github.event.inputs.episode }}" ]; then python run.py --episode "${{ github.event.inputs.episode }}"; else python run.py; fi
+          CH="${{ steps.plan.outputs.channels }}"
+          if [ -n "${{ github.event.inputs.episode }}" ]; then
+            MS=""; [ "${{ github.event.inputs.mark_sent }}" = "true" ] && MS="--mark-sent"
+            python run.py --channels "$CH" --episode "${{ github.event.inputs.episode }}" $MS
+          elif [ "${{ github.event_name }}" = "schedule" ]; then
+            python run.py --channels "$CH" --slot auto --send-at auto
+          else
+            python run.py --channels "$CH"
+          fi
 
       - name: Videoni artefakt sifatida saqlash (7 kun)
         if: steps.plan.outputs.skip != 'true'
         uses: actions/upload-artifact@v4
-        with: { name: video, path: out/*.mp4, retention-days: 7 }
+        with: { name: video, path: out/*.mp4, retention-days: 7, if-no-files-found: ignore }
 
-      - name: Holatni saqlash (sent.json)
+      - name: Holatni saqlash (sent*.json, yangi ssenariylar)
         if: always() && steps.plan.outputs.skip != 'true'
         run: |
           git config user.name "ai-doxtir-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/sent.json 2>/dev/null || true
+          git add data/ episodes/ channels/ 2>/dev/null || true
           git diff --cached --quiet || (git commit -m "holat yangilandi" && git pull --rebase -q && git push)
 
       - name: Xato bo'lsa Telegramga xabar

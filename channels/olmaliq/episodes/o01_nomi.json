@@ -1,0 +1,227 @@
+{
+ "id": "o01_nomi",
+ "num": 1,
+ "series": "Olmaliq sirlari",
+ "title": "Olmaliq nega \"Olmaliq\"?",
+ "tags": [
+  "olmaliq",
+  "tarix"
+ ],
+ "assets": {
+  "v0": {
+   "build": "terrain",
+   "params": {
+    "trees": 30,
+    "city": 0,
+    "seed": 3
+   }
+  },
+  "v1": {
+   "build": "terrain",
+   "params": {
+    "trees": 18,
+    "city": 0.35,
+    "seed": 3
+   }
+  },
+  "v2": {
+   "build": "terrain",
+   "params": {
+    "trees": 8,
+    "city": 0.9,
+    "pin": true,
+    "seed": 3
+   }
+  },
+  "apple": {
+   "build": "osprite",
+   "params": {
+    "kind": "apple"
+   },
+   "samples": 24
+  }
+ },
+ "scenes": [
+  {
+   "type": "hook",
+   "dur": 3.4,
+   "img": "v0",
+   "pos": [
+    540,
+    1180
+   ],
+   "zoom": [
+    1.05,
+    1.2
+   ],
+   "center": "orchard",
+   "lines": [
+    [
+     "Shahringiz *nomi*",
+     84,
+     "teal"
+    ],
+    [
+     "aslida nimani",
+     70,
+     "teal"
+    ],
+    [
+     "*anglatadi*?",
+     92,
+     "copper"
+    ]
+   ]
+  },
+  {
+   "type": "cause",
+   "dur": 4.4,
+   "img": "v0",
+   "pos": [
+    540,
+    1250
+   ],
+   "scale": 1.0,
+   "center": "center",
+   "falling": [
+    "apple",
+    "apple",
+    "apple"
+   ],
+   "eat": false,
+   "badge": [
+    "QADIMDA",
+    "teal"
+   ],
+   "lines": [
+    [
+     "Vodiyda *yovvoyi olma*",
+     70,
+     "teal"
+    ],
+    [
+     "daraxtlari o'sgan",
+     66,
+     "teal"
+    ]
+   ]
+  },
+  {
+   "type": "stages",
+   "steps": [
+    {
+     "img": "v0",
+     "dur": 4.0,
+     "view": [
+      1.5,
+      "orchard"
+     ],
+     "badge": [
+      "OLMA + LIQ",
+      "copper"
+     ],
+     "lines": [
+      [
+       "*Olmaliq* —",
+       80,
+       "teal"
+      ],
+      [
+       "olmasi ko'p joy",
+       70,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "ring",
+       "at": "orchard",
+       "color": "coral",
+       "r": 150,
+       "delay": 0.8
+      }
+     ]
+    },
+    {
+     "img": "v1",
+     "dur": 3.8,
+     "view": [
+      1.15,
+      "city"
+     ],
+     "badge": [
+      "QISHLOQDAN SHAHARGA",
+      "teal"
+     ],
+     "lines": [
+      [
+       "Olmazor o'rnida",
+       70,
+       "teal"
+      ],
+      [
+       "*uylar* paydo bo'ldi",
+       70,
+       "teal"
+      ]
+     ]
+    },
+    {
+     "img": "v2",
+     "dur": 4.4,
+     "view": [
+      1.15,
+      "city"
+     ],
+     "badge": [
+      "1951-YIL 10-IYUL",
+      "coral"
+     ],
+     "lines": [
+      [
+       "Olmaliq *shahar*",
+       80,
+       "teal"
+      ],
+      [
+       "maqomini oldi",
+       70,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "sparkle",
+       "at": "pin",
+       "delay": 0.8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "cta",
+   "dur": 4.6,
+   "img": "v2",
+   "pos": [
+    540,
+    980
+   ],
+   "scale": 0.9,
+   "center": "center",
+   "lines": [
+    [
+     "Siz qaysi *mavze*dasiz?",
+     74,
+     "teal"
+    ],
+    [
+     "Izohda yozing",
+     60,
+     "teal"
+    ]
+   ]
+  }
+ ],
+ "instagram": "Shahringiz nomi aslida nimani anglatadi? 🍎\n\nOlmaliq nomi vodiyda o'sgan yovvoyi olma daraxtlaridan olingan: \"olmasi ko'p joy\". Olmazor o'rnida qishloq, keyin shahar o'sdi. 1951-yil 10-iyulda Olmaliq shahar maqomini oldi.\n\n💬 Bobolaringizdan Olmaliqning eski olmazorlari haqida eshitganmisiz?\n📍 Olmaliq\n\nManba: Britannica, Wikipedia\n\n#olmaliq #almalyk #toshkentviloyati #olmaliqliklar #uzbekistan #3d #ai_olmaliq"
+}
