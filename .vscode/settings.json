@@ -1,0 +1,5 @@
+{
+  "python.defaultInterpreterPath": "python",
+  "files.encoding": "utf8",
+  "files.exclude": {"build": true, "**/__pycache__": true}
+}

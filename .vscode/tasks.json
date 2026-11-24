@@ -1,0 +1,7 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {"label": "Kutubxonalarni o'rnatish", "type": "shell", "command": "python -m pip install -r requirements.txt", "problemMatcher": []},
+    {"label": "Epizodlarni qayta yozish (tools/make_episodes.py)", "type": "shell", "command": "python tools/make_episodes.py", "problemMatcher": []}
+  ]
+}

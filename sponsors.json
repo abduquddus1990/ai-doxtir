@@ -1,0 +1,24 @@
+{
+  "_izoh": "Reklama beruvchilar. active=true bo'lgan va sanasi mos kelgan BIRINCHI hamkor navbatdagi videolarga avtomatik qo'shiladi. placements: mid (video o'rtasida 3-4 s karta), corner (keyingi kadrlarda 'Hamkor: ...' belgisi), end (oxirgi kadrda kontakt), caption (Instagram matniga qator). tags bo'sh bo'lsa — hamma epizodlarga, aks holda faqat shu teglardagi epizodlarga. max_videos — nechta videoga qo'shilishi (sotilgan paket).",
+  "sponsors": [
+    {
+      "id": "namuna_klinika",
+      "active": false,
+      "name": "[Klinika nomi]",
+      "tagline": "Zamonaviy stomatologiya — Olmaliqda",
+      "mid_text": "Birinchi ko'rik — bepul",
+      "phone": "+998 XX XXX XX XX",
+      "address": "Olmaliq, [manzil]",
+      "telegram": "@klinika_username",
+      "instagram": "@klinika_insta",
+      "logo": "assets/sponsors/namuna_logo.png",
+      "color": "#12A89A",
+      "from": "2026-12-01",
+      "to": "2026-12-31",
+      "tags": ["stomatologiya"],
+      "placements": ["mid", "corner", "end", "caption"],
+      "mid_dur": 3.8,
+      "max_videos": 8
+    }
+  ]
+}

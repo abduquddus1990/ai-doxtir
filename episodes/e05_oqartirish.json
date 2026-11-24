@@ -1,0 +1,222 @@
+{
+ "id": "e05_oqartirish",
+ "num": 5,
+ "series": "Tish sirlari",
+ "title": "Tishni oqartirish: soda va limon xavfi",
+ "assets": {
+  "w0": {
+   "build": "front",
+   "params": {
+    "yellow": true
+   }
+  },
+  "w1": {
+   "build": "section",
+   "params": {
+    "enamel_scale": 0.9,
+    "den_scale": 0.86
+   }
+  },
+  "w2": {
+   "build": "front",
+   "params": {
+    "yellow": true,
+    "gel": true
+   }
+  },
+  "w3": {
+   "build": "front",
+   "params": {
+    "white": true
+   }
+  },
+  "lemon": {
+   "build": "sprite",
+   "params": {
+    "kind": "lemon"
+   },
+   "samples": 24
+  }
+ },
+ "scenes": [
+  {
+   "type": "hook",
+   "dur": 3.6,
+   "img": "w0",
+   "pos": [
+    540,
+    1170
+   ],
+   "zoom": [
+    0.92,
+    1.02
+   ],
+   "center": "center",
+   "lines": [
+    [
+     "Tishlar *sarg'aydimi*?",
+     78,
+     "amber"
+    ],
+    [
+     "Soda va limon",
+     70,
+     "teal"
+    ],
+    [
+     "*yordam bermaydi*",
+     80,
+     "coral"
+    ]
+   ]
+  },
+  {
+   "type": "stages",
+   "steps": [
+    {
+     "img": "w0",
+     "dur": 3.8,
+     "view": [
+      0.95,
+      "center"
+     ],
+     "badge": [
+      "SABABI",
+      "amber"
+     ],
+     "enter": false,
+     "lines": [
+      [
+       "Choy, qahva, sigaret",
+       68,
+       "teal"
+      ],
+      [
+       "*dog'* qoldiradi",
+       82,
+       "amber"
+      ]
+     ]
+    },
+    {
+     "img": "w1",
+     "dur": 4.6,
+     "view": [
+      2.0,
+      "crown"
+     ],
+     "badge": [
+      "XATO USUL",
+      "coral"
+     ],
+     "lines": [
+      [
+       "Soda va limon",
+       70,
+       "teal"
+      ],
+      [
+       "*emalni yemiradi*",
+       76,
+       "coral"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "sprite",
+       "name": "lemon",
+       "at": "top",
+       "path": "fall",
+       "scale": 0.5,
+       "dy": -230,
+       "delay": 0.6
+      },
+      {
+       "kind": "bolts",
+       "at": "enamel",
+       "color": "coral",
+       "delay": 1.6
+      }
+     ]
+    },
+    {
+     "img": "w2",
+     "dur": 4.4,
+     "view": [
+      0.95,
+      "center"
+     ],
+     "badge": [
+      "TO'G'RI USUL",
+      "teal"
+     ],
+     "lines": [
+      [
+       "*Professional gel*",
+       78,
+       "teal"
+      ],
+      [
+       "shifokor nazoratida",
+       62,
+       "teal"
+      ]
+     ]
+    },
+    {
+     "img": "w3",
+     "dur": 4.2,
+     "view": [
+      0.95,
+      "center"
+     ],
+     "badge": [
+      "NATIJA",
+      "teal"
+     ],
+     "lines": [
+      [
+       "Oq va *xavfsiz*",
+       84,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "sparkle",
+       "at": "center"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "cta",
+   "dur": 4.6,
+   "img": "w3",
+   "pos": [
+    540,
+    980
+   ],
+   "scale": 0.9,
+   "center": "center",
+   "lines": [
+    [
+     "Oqartirishdan oldin",
+     70,
+     "teal"
+    ],
+    [
+     "*stomatologga* ko'rining",
+     70,
+     "teal"
+    ]
+   ]
+  }
+ ],
+ "instagram": "Tishlar sarg'aydimi? Soda va limon yordam bermaydi ⚠️\n\nChoy, qahva va sigaret tishda dog' qoldiradi. Uyda soda yoki limon bilan ishqalash emalni yemiradi — emal esa qayta tiklanmaydi. Xavfsiz yo'l — shifokor nazoratidagi professional oqartirish.\n\n💬 Uyda oqartirishni sinab ko'rganmisiz?\n📍 Olmaliq\n\n⚠️ Ma'lumot uchun. Tashxis va davolashni shifokor belgilaydi.\n\n#olmaliq #almalyk #toshkentviloyati #stomatologiya #tishlar #sogliq #3d #ai_doxtir #oqartirish",
+ "tags": [
+  "stomatologiya",
+  "sogliq"
+ ]
+}

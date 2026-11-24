@@ -1,0 +1,227 @@
+{
+ "id": "e04_breket",
+ "num": 4,
+ "series": "Tish sirlari",
+ "title": "Breket tishni qanday suradi",
+ "assets": {
+  "b0": {
+   "build": "front",
+   "params": {
+    "crooked": 1.0
+   }
+  },
+  "b1": {
+   "build": "front",
+   "params": {
+    "crooked": 1.0,
+    "brackets": true
+   }
+  },
+  "b2": {
+   "build": "front",
+   "params": {
+    "crooked": 0.5,
+    "brackets": true
+   }
+  },
+  "b3": {
+   "build": "front",
+   "params": {
+    "crooked": 0.0,
+    "brackets": true
+   }
+  },
+  "b4": {
+   "build": "front",
+   "params": {
+    "crooked": 0.0,
+    "white": true
+   }
+  }
+ },
+ "scenes": [
+  {
+   "type": "hook",
+   "dur": 3.4,
+   "img": "b0",
+   "pos": [
+    540,
+    1150
+   ],
+   "zoom": [
+    0.92,
+    1.02
+   ],
+   "center": "center",
+   "lines": [
+    [
+     "Qiyshiq tishlar",
+     82,
+     "teal"
+    ],
+    [
+     "*qanday* to'g'rilanadi?",
+     76,
+     "teal"
+    ]
+   ]
+  },
+  {
+   "type": "stages",
+   "steps": [
+    {
+     "img": "b1",
+     "dur": 4.2,
+     "view": [
+      0.95,
+      "center"
+     ],
+     "badge": [
+      "1 · BREKET",
+      "blue"
+     ],
+     "lines": [
+      [
+       "Har tishga *qulf*",
+       76,
+       "blue"
+      ],
+      [
+       "ular sim bilan bog'lanadi",
+       60,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "label",
+       "at": "center",
+       "text": "Sim",
+       "color": "blue",
+       "to": [
+        820,
+        1300
+       ],
+       "side": "right",
+       "delay": 1.2
+      }
+     ]
+    },
+    {
+     "img": "b2",
+     "dur": 4.6,
+     "view": [
+      0.95,
+      "center"
+     ],
+     "badge": [
+      "2 · YENGIL BOSIM",
+      "orange"
+     ],
+     "lines": [
+      [
+       "Sim tishlarni",
+       70,
+       "teal"
+      ],
+      [
+       "*sekin-asta* suradi",
+       76,
+       "orange"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "arrow",
+       "from": "left",
+       "at": "tooth2",
+       "color": "orange"
+      }
+     ]
+    },
+    {
+     "img": "b3",
+     "dur": 4.4,
+     "view": [
+      0.95,
+      "center"
+     ],
+     "badge": [
+      "3 · NATIJA",
+      "teal"
+     ],
+     "lines": [
+      [
+       "Odatda *1–2 yil*",
+       78,
+       "teal"
+      ],
+      [
+       "davom etadi",
+       64,
+       "teal"
+      ]
+     ]
+    },
+    {
+     "img": "b4",
+     "dur": 4.2,
+     "view": [
+      0.95,
+      "center"
+     ],
+     "badge": [
+      "TEKIS TISHLAR",
+      "teal"
+     ],
+     "lines": [
+      [
+       "Chiroyli va",
+       70,
+       "teal"
+      ],
+      [
+       "*tozalash oson*",
+       80,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "sparkle",
+       "at": "center"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "cta",
+   "dur": 4.6,
+   "img": "b4",
+   "pos": [
+    540,
+    980
+   ],
+   "scale": 0.9,
+   "center": "center",
+   "lines": [
+    [
+     "Breket kerakmi —",
+     70,
+     "teal"
+    ],
+    [
+     "*ortodont* aniqlaydi",
+     76,
+     "teal"
+    ]
+   ]
+  }
+ ],
+ "instagram": "Breket tishni qanday suradi? 🦷\n\nHar bir tishga kichik qulf (breket) yopishtiriladi, ular sim bilan bog'lanadi. Sim tishlarga doimiy yengil bosim berib, ularni sekin-asta to'g'ri joyga suradi. Davolash odatda 1–2 yil davom etadi — aniq muddatni ortodont belgilaydi.\n\n💬 Breket taqqanmisiz?\n📍 Olmaliq\n\n⚠️ Ma'lumot uchun. Tashxis va davolashni shifokor belgilaydi.\n\n#olmaliq #almalyk #toshkentviloyati #stomatologiya #tishlar #sogliq #3d #ai_doxtir #breket #ortodont",
+ "tags": [
+  "stomatologiya",
+  "sogliq"
+ ]
+}

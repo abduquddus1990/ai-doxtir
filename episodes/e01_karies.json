@@ -1,0 +1,369 @@
+{
+ "id": "e01_karies",
+ "num": 1,
+ "series": "Tish sirlari",
+ "title": "Karies tishni qanday yeydi",
+ "assets": {
+  "turn": {
+   "build": "molar",
+   "params": {
+    "spot": true
+   },
+   "turn": {
+    "frames": 24,
+    "from": -40,
+    "to": 120
+   }
+  },
+  "healthy": {
+   "build": "molar",
+   "params": {}
+  },
+  "bact_g": {
+   "build": "sprite",
+   "params": {
+    "kind": "bact_g"
+   },
+   "samples": 24
+  },
+  "bact_p": {
+   "build": "sprite",
+   "params": {
+    "kind": "bact_p"
+   },
+   "samples": 24
+  },
+  "sugar": {
+   "build": "sprite",
+   "params": {
+    "kind": "sugar"
+   },
+   "samples": 24
+  },
+  "s0": {
+   "build": "section",
+   "params": {}
+  },
+  "s1": {
+   "build": "section",
+   "params": {
+    "caries": 1
+   }
+  },
+  "s2": {
+   "build": "section",
+   "params": {
+    "caries": 2
+   }
+  },
+  "s3": {
+   "build": "section",
+   "params": {
+    "caries": 3,
+    "pulp": "hot"
+   }
+  },
+  "s4": {
+   "build": "section",
+   "params": {
+    "caries": 2,
+    "fill": true
+   }
+  }
+ },
+ "scenes": [
+  {
+   "type": "hook",
+   "dur": 3.4,
+   "img": "turn",
+   "pos": [
+    540,
+    1150
+   ],
+   "zoom": [
+    1.0,
+    1.2
+   ],
+   "ring": [
+    540,
+    790
+   ],
+   "lines": [
+    [
+     "Shu *kichkina nuqta*",
+     84,
+     "teal"
+    ],
+    [
+     "tishingizni ichidan",
+     70,
+     "teal"
+    ],
+    [
+     "*yeb qo'yadi*",
+     92,
+     "coral"
+    ]
+   ]
+  },
+  {
+   "type": "cause",
+   "dur": 5.2,
+   "img": "turn",
+   "pos": [
+    540,
+    1320
+   ],
+   "scale": 1.0,
+   "falling": [
+    "sugar",
+    "sugar",
+    "sugar"
+   ],
+   "crawlers": [
+    "bact_g",
+    "bact_p",
+    "bact_p",
+    "bact_g"
+   ],
+   "drops": "#aae63c",
+   "lines": [
+    [
+     "Shakar + bakteriya",
+     76,
+     "teal"
+    ],
+    [
+     "= *kislota*",
+     92,
+     "coral",
+     2.2
+    ]
+   ]
+  },
+  {
+   "type": "stages",
+   "steps": [
+    {
+     "img": "s0",
+     "dur": 3.8,
+     "view": [
+      1.2,
+      "crown"
+     ],
+     "badge": [
+      "TISH ICHIDA",
+      "teal"
+     ],
+     "lines": [
+      [
+       "3 qavatdan iborat",
+       76,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "label",
+       "at": "enamel",
+       "text": "Emal",
+       "color": "teal",
+       "to": [
+        330,
+        700
+       ],
+       "delay": 0.9
+      },
+      {
+       "kind": "label",
+       "at": "dentin",
+       "text": "Dentin",
+       "color": "dentin",
+       "to": [
+        330,
+        930
+       ],
+       "delay": 1.5
+      },
+      {
+       "kind": "label",
+       "at": "pulp",
+       "text": "Pulpa (nerv)",
+       "color": "coral",
+       "to": [
+        760,
+        800
+       ],
+       "side": "right",
+       "delay": 2.1
+      }
+     ]
+    },
+    {
+     "img": "s1",
+     "dur": 4.2,
+     "view": [
+      2.0,
+      "crown"
+     ],
+     "badge": [
+      "1-BOSQICH · EMAL",
+      "amber"
+     ],
+     "lines": [
+      [
+       "Og'rimaydi, shuning uchun",
+       64,
+       "teal"
+      ],
+      [
+       "*sezilmaydi*",
+       84,
+       "amber"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "ring",
+       "at": "car1",
+       "color": "amber",
+       "delay": 1.2
+      }
+     ]
+    },
+    {
+     "img": "s2",
+     "dur": 4.4,
+     "view": [
+      2.0,
+      "crown"
+     ],
+     "badge": [
+      "2-BOSQICH · DENTIN",
+      "orange"
+     ],
+     "lines": [
+      [
+       "Shirin va sovuqdan",
+       66,
+       "teal"
+      ],
+      [
+       "*sanchiq* paydo bo'ladi",
+       74,
+       "orange"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "bolts",
+       "at": "car2",
+       "color": "orange"
+      }
+     ]
+    },
+    {
+     "img": "s3",
+     "dur": 4.8,
+     "view": [
+      1.55,
+      "pulp"
+     ],
+     "badge": [
+      "3-BOSQICH · PULPA",
+      "coral"
+     ],
+     "lines": [
+      [
+       "Kuchli og'riq —",
+       72,
+       "teal"
+      ],
+      [
+       "*kanal davolash* kerak",
+       70,
+       "coral"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "glow",
+       "at": "pulp",
+       "dy": 40,
+       "delay": 0.8
+      },
+      {
+       "kind": "bolts",
+       "at": "pulp",
+       "color": "coral",
+       "r": 250,
+       "size": 58,
+       "n": 5
+      },
+      {
+       "kind": "shake"
+      }
+     ]
+    },
+    {
+     "img": "s4",
+     "dur": 4.4,
+     "view": [
+      2.0,
+      "crown"
+     ],
+     "badge": [
+      "YECHIM",
+      "teal"
+     ],
+     "lines": [
+      [
+       "Erta aniqlansa —",
+       72,
+       "teal"
+      ],
+      [
+       "*bitta tashrif*, plomba",
+       70,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "sparkle",
+       "at": "car2"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "cta",
+   "dur": 4.8,
+   "img": "healthy",
+   "pos": [
+    540,
+    900
+   ],
+   "scale": 0.95,
+   "center": "crown",
+   "lines": [
+    [
+     "Har *6 oyda*",
+     84,
+     "teal"
+    ],
+    [
+     "stomatolog ko'rigidan o'ting",
+     58,
+     "teal"
+    ]
+   ]
+  }
+ ],
+ "instagram": "Shu kichkina qora nuqta tishingizni ichidan yeb qo'yadi 🦷\n\nKaries 3 bosqichda rivojlanadi: avval emalda (og'rimaydi), keyin dentinda (shirin va sovuqdan sanchiydi), oxiri pulpada — kuchli og'riq va kanal davolash. Erta aniqlansa, oddiy plomba yetarli.\n\n💬 Oxirgi marta stomatologga qachon borgansiz?\n📍 Olmaliq\n\n⚠️ Ma'lumot uchun. Tashxis va davolashni shifokor belgilaydi.\n\n#olmaliq #almalyk #toshkentviloyati #stomatologiya #tishlar #sogliq #3d #ai_doxtir",
+ "tags": [
+  "stomatologiya",
+  "sogliq"
+ ]
+}

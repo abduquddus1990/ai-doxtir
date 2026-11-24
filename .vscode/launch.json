@@ -1,0 +1,38 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "1) Tez sinov: navbatdagi epizod kadrlari (preview)",
+      "type": "debugpy", "request": "launch", "program": "${workspaceFolder}/run.py",
+      "args": ["--quality", "preview", "--no-send", "--preview-times", "2,8,14,20,26"],
+      "console": "integratedTerminal", "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "2) Epizodni tanlab to'liq video (yubormasdan)",
+      "type": "debugpy", "request": "launch", "program": "${workspaceFolder}/run.py",
+      "args": ["--episode", "${input:episode}", "--no-send"],
+      "console": "integratedTerminal", "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "3) Navbatdagi videoni yasash va botga yuborish",
+      "type": "debugpy", "request": "launch", "program": "${workspaceFolder}/run.py",
+      "args": [], "console": "integratedTerminal", "cwd": "${workspaceFolder}", "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "name": "4) Reklama sinovi: hamkor bilan preview",
+      "type": "debugpy", "request": "launch", "program": "${workspaceFolder}/run.py",
+      "args": ["--episode", "${input:episode}", "--quality", "preview", "--no-send", "--sponsor", "${input:sponsor}", "--preview-times", "10,13,16,24,30"],
+      "console": "integratedTerminal", "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "5) Navbat holati",
+      "type": "debugpy", "request": "launch", "program": "${workspaceFolder}/run.py",
+      "args": ["--list"], "console": "integratedTerminal", "cwd": "${workspaceFolder}"
+    }
+  ],
+  "inputs": [
+    {"id": "episode", "type": "pickString", "description": "Epizod",
+     "options": ["e01_karies", "e02_tish_toshi", "e03_implant", "e04_breket", "e05_oqartirish", "e06_kanal", "e07_aql_tishi", "e08_sut_tishi", "e09_tish_yuvish", "e10_gazli_ichimlik"]},
+    {"id": "sponsor", "type": "promptString", "description": "sponsors.json dagi hamkor id", "default": "namuna_klinika"}
+  ]
+}

@@ -1,0 +1,275 @@
+{
+ "id": "e08_sut_tishi",
+ "num": 8,
+ "series": "Tish sirlari",
+ "title": "Sut tishini nega davolash kerak",
+ "assets": {
+  "m0": {
+   "build": "section",
+   "params": {
+    "baby": true,
+    "germ": true
+   }
+  },
+  "m1": {
+   "build": "section",
+   "params": {
+    "baby": true,
+    "germ": true,
+    "caries": 2
+   }
+  },
+  "m2": {
+   "build": "section",
+   "params": {
+    "baby": true,
+    "germ": true,
+    "caries": 3,
+    "pulp": "hot",
+    "germ_glow": true
+   }
+  },
+  "m3": {
+   "build": "section",
+   "params": {
+    "baby": true,
+    "germ": true,
+    "caries": 2,
+    "fill": true
+   }
+  },
+  "candy": {
+   "build": "sprite",
+   "params": {
+    "kind": "candy"
+   },
+   "samples": 24
+  },
+  "bact_g": {
+   "build": "sprite",
+   "params": {
+    "kind": "bact_g"
+   },
+   "samples": 24
+  },
+  "bact_p": {
+   "build": "sprite",
+   "params": {
+    "kind": "bact_p"
+   },
+   "samples": 24
+  }
+ },
+ "scenes": [
+  {
+   "type": "hook",
+   "dur": 3.8,
+   "img": "m0",
+   "pos": [
+    540,
+    1160
+   ],
+   "zoom": [
+    1.3,
+    1.5
+   ],
+   "center": "crown",
+   "lines": [
+    [
+     "Sut tishi baribir",
+     72,
+     "teal"
+    ],
+    [
+     "*tushib ketadi*-ku?",
+     80,
+     "amber"
+    ],
+    [
+     "Unda nega davolash kerak",
+     56,
+     "teal"
+    ]
+   ]
+  },
+  {
+   "type": "stages",
+   "steps": [
+    {
+     "img": "m0",
+     "dur": 4.0,
+     "view": [
+      1.1,
+      "germ"
+     ],
+     "badge": [
+      "ICHIDA NIMA BOR",
+      "teal"
+     ],
+     "enter": false,
+     "lines": [
+      [
+       "Ostida *doimiy tish*",
+       74,
+       "teal"
+      ],
+      [
+       "o'sib kelyapti",
+       66,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "label",
+       "at": "germ",
+       "text": "Doimiy tish",
+       "color": "teal",
+       "to": [
+        700,
+        1250
+       ],
+       "side": "right",
+       "delay": 0.8
+      }
+     ]
+    },
+    {
+     "img": "m1",
+     "dur": 4.2,
+     "view": [
+      1.6,
+      "crown"
+     ],
+     "badge": [
+      "KARIES",
+      "amber"
+     ],
+     "lines": [
+      [
+       "Sut tishida emal *yupqa*,",
+       64,
+       "amber"
+      ],
+      [
+       "karies tez chuqurlashadi",
+       60,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "ring",
+       "at": "car2",
+       "color": "amber",
+       "r": 80
+      },
+      {
+       "kind": "sprite",
+       "name": "candy",
+       "at": "top",
+       "path": "fall",
+       "scale": 0.4,
+       "dx": 260,
+       "dy": -150,
+       "delay": 0.4
+      }
+     ]
+    },
+    {
+     "img": "m2",
+     "dur": 4.6,
+     "view": [
+      1.1,
+      "germ"
+     ],
+     "badge": [
+      "XAVF",
+      "coral"
+     ],
+     "lines": [
+      [
+       "Infeksiya *doimiy tishga*",
+       68,
+       "coral"
+      ],
+      [
+       "zarar yetkazishi mumkin",
+       62,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "glow",
+       "at": "germ",
+       "r": 170,
+       "delay": 0.8
+      },
+      {
+       "kind": "shake"
+      }
+     ]
+    },
+    {
+     "img": "m3",
+     "dur": 4.2,
+     "view": [
+      1.6,
+      "crown"
+     ],
+     "badge": [
+      "YECHIM",
+      "teal"
+     ],
+     "lines": [
+      [
+       "Sut tishini ham",
+       72,
+       "teal"
+      ],
+      [
+       "*vaqtida davolang*",
+       78,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "sparkle",
+       "at": "car2"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "cta",
+   "dur": 4.6,
+   "img": "m3",
+   "pos": [
+    540,
+    1000
+   ],
+   "scale": 1.2,
+   "center": "crown",
+   "lines": [
+    [
+     "Bolani *har 6 oyda*",
+     74,
+     "teal"
+    ],
+    [
+     "stomatologga olib boring",
+     60,
+     "teal"
+    ]
+   ]
+  }
+ ],
+ "instagram": "\"Sut tishi baribir tushib ketadi\" — bu xato fikr ⚠️\n\nSut tishi ostida doimiy tish o'sib kelyapti. Sut tishida emal yupqa, shuning uchun karies tez chuqurlashadi. Infeksiya ildiz atrofiga tushsa, ostidagi doimiy tishga ham zarar yetkazishi mumkin.\n\n💬 Farzandingiz oxirgi marta stomatologda qachon bo'lgan?\n📍 Olmaliq\n\n⚠️ Ma'lumot uchun. Tashxis va davolashni shifokor belgilaydi.\n\n#olmaliq #almalyk #toshkentviloyati #stomatologiya #tishlar #sogliq #3d #ai_doxtir #bolalarstomatologiyasi",
+ "tags": [
+  "stomatologiya",
+  "sogliq"
+ ]
+}

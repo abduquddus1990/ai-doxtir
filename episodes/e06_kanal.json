@@ -1,0 +1,240 @@
+{
+ "id": "e06_kanal",
+ "num": 6,
+ "series": "Tish sirlari",
+ "title": "Kanal davolash ichidan",
+ "assets": {
+  "k0": {
+   "build": "section",
+   "params": {
+    "caries": 3,
+    "pulp": "hot",
+    "abscess": true
+   }
+  },
+  "k1": {
+   "build": "section",
+   "params": {
+    "access": true,
+    "files": true,
+    "pulp": "hot"
+   }
+  },
+  "k2": {
+   "build": "section",
+   "params": {
+    "access": true,
+    "pulp": "gutta"
+   }
+  },
+  "k3": {
+   "build": "section",
+   "params": {
+    "access": true,
+    "access_fill": true,
+    "pulp": "gutta"
+   }
+  }
+ },
+ "scenes": [
+  {
+   "type": "hook",
+   "dur": 3.6,
+   "img": "k0",
+   "pos": [
+    540,
+    1150
+   ],
+   "zoom": [
+    1.3,
+    1.5
+   ],
+   "center": "pulp",
+   "lines": [
+    [
+     "Tish *zirqirab*",
+     84,
+     "coral"
+    ],
+    [
+     "og'riyaptimi?",
+     76,
+     "teal"
+    ],
+    [
+     "Kanal davolash — ichidan",
+     58,
+     "teal"
+    ]
+   ]
+  },
+  {
+   "type": "stages",
+   "steps": [
+    {
+     "img": "k0",
+     "dur": 4.2,
+     "view": [
+      1.25,
+      "pulp"
+     ],
+     "badge": [
+      "MUAMMO",
+      "coral"
+     ],
+     "enter": false,
+     "lines": [
+      [
+       "Infeksiya *nervga*",
+       74,
+       "coral"
+      ],
+      [
+       "va ildiz uchiga yetgan",
+       62,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "glow",
+       "at": "pulp",
+       "dy": 30,
+       "delay": 0.6
+      },
+      {
+       "kind": "glow",
+       "at": "apex_l",
+       "r": 110,
+       "delay": 1.0
+      },
+      {
+       "kind": "glow",
+       "at": "apex_r",
+       "r": 110,
+       "delay": 1.2
+      },
+      {
+       "kind": "shake"
+      }
+     ]
+    },
+    {
+     "img": "k1",
+     "dur": 4.6,
+     "view": [
+      1.25,
+      "pulp"
+     ],
+     "badge": [
+      "1 · TOZALASH",
+      "blue"
+     ],
+     "lines": [
+      [
+       "Maxsus *ignalar* bilan",
+       70,
+       "blue"
+      ],
+      [
+       "kanallar tozalanadi",
+       64,
+       "teal"
+      ]
+     ]
+    },
+    {
+     "img": "k2",
+     "dur": 4.4,
+     "view": [
+      1.25,
+      "pulp"
+     ],
+     "badge": [
+      "2 · TO'LDIRISH",
+      "orange"
+     ],
+     "lines": [
+      [
+       "Kanallar *germetik*",
+       72,
+       "orange"
+      ],
+      [
+       "to'ldiriladi",
+       66,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "label",
+       "at": "canal",
+       "text": "Plomba",
+       "color": "orange",
+       "to": [
+        820,
+        1150
+       ],
+       "side": "right",
+       "delay": 1.0
+      }
+     ]
+    },
+    {
+     "img": "k3",
+     "dur": 4.4,
+     "view": [
+      1.6,
+      "crown"
+     ],
+     "badge": [
+      "3 · TIKLASH",
+      "teal"
+     ],
+     "lines": [
+      [
+       "Tish *saqlab qolinadi*",
+       72,
+       "teal"
+      ],
+      [
+       "sug'urib tashlanmaydi",
+       62,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "sparkle",
+       "at": "top"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "cta",
+   "dur": 4.6,
+   "img": "k3",
+   "pos": [
+    540,
+    1000
+   ],
+   "scale": 1.1,
+   "center": "crown",
+   "lines": [
+    [
+     "Og'riqni *kutib* o'tirmang",
+     68,
+     "coral"
+    ]
+   ]
+  }
+ ],
+ "instagram": "Tish zirqirab og'riyaptimi? Kanal davolash ichidan qanday ko'rinadi 🦷\n\nKaries chuqurlashib nervga (pulpaga) yetsa, infeksiya ildiz uchiga tushadi. Shifokor maxsus asboblar bilan kanallarni tozalaydi, germetik to'ldiradi va tishni tiklaydi. Natijada tish sug'urilmasdan saqlab qolinadi.\n\n💬 Kanal davolatganmisiz?\n📍 Olmaliq\n\n⚠️ Ma'lumot uchun. Tashxis va davolashni shifokor belgilaydi.\n\n#olmaliq #almalyk #toshkentviloyati #stomatologiya #tishlar #sogliq #3d #ai_doxtir #kanaldavolash",
+ "tags": [
+  "stomatologiya",
+  "sogliq"
+ ]
+}

@@ -1,0 +1,216 @@
+{
+ "id": "e09_tish_yuvish",
+ "num": 9,
+ "series": "Tish sirlari",
+ "title": "Tishni to'g'ri yuvish",
+ "assets": {
+  "p0": {
+   "build": "front",
+   "params": {
+    "plaque": true
+   }
+  },
+  "p1": {
+   "build": "front",
+   "params": {
+    "recession": true,
+    "gum_red": true
+   }
+  },
+  "p2": {
+   "build": "front",
+   "params": {
+    "white": true
+   }
+  },
+  "brush": {
+   "build": "sprite",
+   "params": {
+    "kind": "brush"
+   },
+   "samples": 24
+  }
+ },
+ "scenes": [
+  {
+   "type": "hook",
+   "dur": 3.4,
+   "img": "p0",
+   "pos": [
+    540,
+    1160
+   ],
+   "zoom": [
+    0.92,
+    1.02
+   ],
+   "center": "center",
+   "lines": [
+    [
+     "Tishni *to'g'ri*",
+     84,
+     "teal"
+    ],
+    [
+     "yuvasizmi?",
+     76,
+     "teal"
+    ],
+    [
+     "Ko'pchilik *xato* qiladi",
+     66,
+     "coral"
+    ]
+   ]
+  },
+  {
+   "type": "stages",
+   "steps": [
+    {
+     "img": "p0",
+     "dur": 4.4,
+     "view": [
+      0.95,
+      "center"
+     ],
+     "badge": [
+      "XATO",
+      "coral"
+     ],
+     "enter": false,
+     "lines": [
+      [
+       "Qattiq bosib",
+       72,
+       "teal"
+      ],
+      [
+       "*u yoq-bu yoqqa* ishqalash",
+       62,
+       "coral"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "sprite",
+       "name": "brush",
+       "at": "center",
+       "path": "scrub",
+       "scale": 0.75,
+       "dy": 40,
+       "delay": 0.4
+      }
+     ]
+    },
+    {
+     "img": "p1",
+     "dur": 4.4,
+     "view": [
+      0.95,
+      "center"
+     ],
+     "badge": [
+      "OQIBAT",
+      "coral"
+     ],
+     "lines": [
+      [
+       "Milk *pasayadi*,",
+       78,
+       "coral"
+      ],
+      [
+       "tish ildizi ochilib qoladi",
+       60,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "ring",
+       "at": "gumline",
+       "color": "coral",
+       "r": 110
+      },
+      {
+       "kind": "bolts",
+       "at": "gumline",
+       "color": "orange",
+       "r": 220,
+       "delay": 1.4
+      }
+     ]
+    },
+    {
+     "img": "p2",
+     "dur": 4.8,
+     "view": [
+      0.95,
+      "center"
+     ],
+     "badge": [
+      "TO'G'RI",
+      "teal"
+     ],
+     "lines": [
+      [
+       "45° burchak, *yumshoq*",
+       68,
+       "teal"
+      ],
+      [
+       "aylanma harakat, 2 daqiqa",
+       58,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "sprite",
+       "name": "brush",
+       "at": "gumline",
+       "path": "circle",
+       "scale": 0.7,
+       "rot": -20,
+       "dy": 60,
+       "delay": 0.4
+      },
+      {
+       "kind": "sparkle",
+       "at": "center",
+       "delay": 2.6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "cta",
+   "dur": 4.6,
+   "img": "p2",
+   "pos": [
+    540,
+    980
+   ],
+   "scale": 0.9,
+   "center": "center",
+   "lines": [
+    [
+     "Kuniga *2 marta*,",
+     82,
+     "teal"
+    ],
+    [
+     "har biri 2 daqiqa",
+     64,
+     "teal"
+    ]
+   ]
+  }
+ ],
+ "instagram": "Tishni to'g'ri yuvasizmi? Ko'pchilik xato qiladi 🪥\n\n❌ Qattiq bosib, u yoq-bu yoqqa ishqalash milkni pasaytiradi — tish ildizi ochilib, sezgir bo'lib qoladi.\n✅ To'g'ri usul: yumshoq cho'tka, milkka 45° burchak, kichik aylanma harakatlar, kuniga 2 marta, 2 daqiqadan.\n\n💬 Cho'tkangizni har necha oyda almashtirasiz?\n📍 Olmaliq\n\n⚠️ Ma'lumot uchun. Tashxis va davolashni shifokor belgilaydi.\n\n#olmaliq #almalyk #toshkentviloyati #stomatologiya #tishlar #sogliq #3d #ai_doxtir #tishyuvish",
+ "tags": [
+  "stomatologiya",
+  "sogliq"
+ ]
+}

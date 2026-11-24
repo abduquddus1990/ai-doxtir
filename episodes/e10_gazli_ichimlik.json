@@ -1,0 +1,281 @@
+{
+ "id": "e10_gazli_ichimlik",
+ "num": 10,
+ "series": "Tish sirlari",
+ "title": "Gazli ichimlik tishga nima qiladi",
+ "assets": {
+  "hero": {
+   "build": "molar",
+   "params": {}
+  },
+  "soda": {
+   "build": "sprite",
+   "params": {
+    "kind": "soda"
+   },
+   "samples": 24
+  },
+  "lemon": {
+   "build": "sprite",
+   "params": {
+    "kind": "lemon"
+   },
+   "samples": 24
+  },
+  "e0": {
+   "build": "section",
+   "params": {}
+  },
+  "e1": {
+   "build": "section",
+   "params": {
+    "enamel_scale": 0.93,
+    "den_scale": 0.84
+   }
+  },
+  "e2": {
+   "build": "section",
+   "params": {
+    "enamel_scale": 0.88,
+    "den_scale": 0.86
+   }
+  }
+ },
+ "scenes": [
+  {
+   "type": "hook",
+   "dur": 3.4,
+   "img": "hero",
+   "pos": [
+    540,
+    1170
+   ],
+   "zoom": [
+    1.05,
+    1.2
+   ],
+   "center": "crown",
+   "lines": [
+    [
+     "Gazli ichimlik",
+     84,
+     "teal"
+    ],
+    [
+     "tishga *nima qiladi*?",
+     78,
+     "coral"
+    ]
+   ]
+  },
+  {
+   "type": "cause",
+   "dur": 4.6,
+   "img": "hero",
+   "pos": [
+    540,
+    1330
+   ],
+   "scale": 1.0,
+   "center": "crown",
+   "falling": [
+    "soda",
+    "lemon",
+    "soda"
+   ],
+   "fall_scale": 0.42,
+   "drops": "#9fe3ff",
+   "badge": [
+    "SABABI",
+    "amber"
+   ],
+   "lines": [
+    [
+     "Ichimlikdagi *kislota*",
+     72,
+     "amber"
+    ],
+    [
+     "emalni yumshatadi",
+     66,
+     "teal",
+     1.0
+    ]
+   ]
+  },
+  {
+   "type": "stages",
+   "steps": [
+    {
+     "img": "e0",
+     "dur": 3.8,
+     "view": [
+      1.6,
+      "crown"
+     ],
+     "badge": [
+      "SOG'LOM EMAL",
+      "teal"
+     ],
+     "lines": [
+      [
+       "Emal — tanadagi",
+       70,
+       "teal"
+      ],
+      [
+       "*eng qattiq* to'qima",
+       74,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "label",
+       "at": "enamel",
+       "text": "Emal",
+       "color": "teal",
+       "to": [
+        330,
+        700
+       ],
+       "delay": 0.9
+      }
+     ]
+    },
+    {
+     "img": "e1",
+     "dur": 4.4,
+     "view": [
+      1.8,
+      "crown"
+     ],
+     "badge": [
+      "EROZIYA",
+      "amber"
+     ],
+     "lines": [
+      [
+       "Har qultum kislota",
+       66,
+       "teal"
+      ],
+      [
+       "emalni *yupqalashtiradi*",
+       68,
+       "amber"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "drops",
+       "at": "top",
+       "color": [
+        150,
+        220,
+        255
+       ]
+      },
+      {
+       "kind": "ring",
+       "at": "enamel",
+       "color": "amber",
+       "r": 90,
+       "delay": 1.6
+      }
+     ]
+    },
+    {
+     "img": "e2",
+     "dur": 4.4,
+     "view": [
+      1.8,
+      "crown"
+     ],
+     "badge": [
+      "SEZUVCHANLIK",
+      "orange"
+     ],
+     "lines": [
+      [
+       "Emal yupqalashsa —",
+       68,
+       "teal"
+      ],
+      [
+       "*sovuq-issiqdan* sanchiq",
+       66,
+       "orange"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "bolts",
+       "at": "crown",
+       "color": "orange",
+       "r": 220
+      }
+     ]
+    },
+    {
+     "img": "e0",
+     "dur": 4.4,
+     "view": [
+      1.6,
+      "crown"
+     ],
+     "badge": [
+      "MASLAHAT",
+      "teal"
+     ],
+     "lines": [
+      [
+       "*Somincha* bilan iching,",
+       66,
+       "teal"
+      ],
+      [
+       "keyin suv bilan chayqang",
+       60,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "sparkle",
+       "at": "crown"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "cta",
+   "dur": 4.4,
+   "img": "hero",
+   "pos": [
+    540,
+    900
+   ],
+   "scale": 0.95,
+   "center": "crown",
+   "lines": [
+    [
+     "Ichgandan keyin *30 daqiqa*",
+     64,
+     "teal"
+    ],
+    [
+     "kutib, keyin tish yuving",
+     60,
+     "teal"
+    ]
+   ]
+  }
+ ],
+ "instagram": "Gazli ichimlik tishga nima qiladi? 🥤\n\nIchimlikdagi kislota emalni yumshatadi va asta-sekin yupqalashtiradi (eroziya). Emal yupqalashsa, tish sovuq-issiqdan sanchiydigan bo'ladi.\n\n✅ Somincha bilan iching\n✅ Keyin suv bilan chayqang\n✅ Darhol emas, 30 daqiqadan keyin tish yuving\n\n💬 Kuniga qancha gazli ichimlik ichasiz?\n📍 Olmaliq\n\n⚠️ Ma'lumot uchun. Tashxis va davolashni shifokor belgilaydi.\n\n#olmaliq #almalyk #toshkentviloyati #stomatologiya #tishlar #sogliq #3d #ai_doxtir #eroziya",
+ "tags": [
+  "stomatologiya",
+  "sogliq"
+ ]
+}

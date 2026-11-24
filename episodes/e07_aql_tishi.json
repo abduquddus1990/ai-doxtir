@@ -1,0 +1,239 @@
+{
+ "id": "e07_aql_tishi",
+ "num": 7,
+ "series": "Tish sirlari",
+ "title": "Aql tishi nega muammo",
+ "assets": {
+  "a0": {
+   "build": "wisdom",
+   "params": {
+    "stage": 0
+   }
+  },
+  "a1": {
+   "build": "wisdom",
+   "params": {
+    "stage": 1
+   }
+  },
+  "a2": {
+   "build": "wisdom",
+   "params": {
+    "stage": 2
+   }
+  },
+  "a3": {
+   "build": "wisdom",
+   "params": {
+    "stage": 3
+   }
+  }
+ },
+ "scenes": [
+  {
+   "type": "hook",
+   "dur": 3.4,
+   "img": "a0",
+   "pos": [
+    540,
+    1150
+   ],
+   "zoom": [
+    1.2,
+    1.4
+   ],
+   "center": "contact",
+   "lines": [
+    [
+     "*Aql tishi*",
+     92,
+     "amber"
+    ],
+    [
+     "nega muammo",
+     74,
+     "teal"
+    ],
+    [
+     "keltiradi?",
+     74,
+     "teal"
+    ]
+   ]
+  },
+  {
+   "type": "stages",
+   "steps": [
+    {
+     "img": "a0",
+     "dur": 4.4,
+     "view": [
+      1.25,
+      "contact"
+     ],
+     "badge": [
+      "QIYSHIQ O'SISH",
+      "amber"
+     ],
+     "enter": false,
+     "lines": [
+      [
+       "Joy yetmasa —",
+       72,
+       "teal"
+      ],
+      [
+       "*qo'shni tishni* itaradi",
+       66,
+       "amber"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "arrow",
+       "from": "wisdom",
+       "at": "contact",
+       "color": "coral"
+      },
+      {
+       "kind": "ring",
+       "at": "contact",
+       "color": "amber",
+       "r": 80,
+       "delay": 1.6
+      }
+     ]
+    },
+    {
+     "img": "a1",
+     "dur": 4.4,
+     "view": [
+      1.25,
+      "contact"
+     ],
+     "badge": [
+      "YALLIG'LANISH",
+      "coral"
+     ],
+     "lines": [
+      [
+       "Milk *shishadi*,",
+       76,
+       "coral"
+      ],
+      [
+       "og'iz ochish qiyinlashadi",
+       60,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "glow",
+       "at": "gum",
+       "r": 150
+      },
+      {
+       "kind": "bolts",
+       "at": "gum",
+       "color": "coral",
+       "r": 170
+      },
+      {
+       "kind": "shake"
+      }
+     ]
+    },
+    {
+     "img": "a2",
+     "dur": 4.2,
+     "view": [
+      1.25,
+      "contact"
+     ],
+     "badge": [
+      "YECHIM",
+      "teal"
+     ],
+     "lines": [
+      [
+       "Vaqtida *olib tashlash*",
+       70,
+       "teal"
+      ],
+      [
+       "qo'shni tishni asraydi",
+       62,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "check",
+       "at": "socket",
+       "delay": 1.2
+      }
+     ]
+    },
+    {
+     "img": "a3",
+     "dur": 4.0,
+     "view": [
+      1.25,
+      "contact"
+     ],
+     "badge": [
+      "NATIJA",
+      "teal"
+     ],
+     "lines": [
+      [
+       "Suyak *tiklanadi*",
+       80,
+       "teal"
+      ],
+      [
+       "og'riq yo'qoladi",
+       64,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "sparkle",
+       "at": "socket"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "cta",
+   "dur": 4.6,
+   "img": "a3",
+   "pos": [
+    540,
+    1000
+   ],
+   "scale": 1.1,
+   "center": "contact",
+   "lines": [
+    [
+     "Aql tishi og'risa —",
+     70,
+     "teal"
+    ],
+    [
+     "*rentgen* qildiring",
+     76,
+     "teal"
+    ]
+   ]
+  }
+ ],
+ "instagram": "Aql tishi nega muammo keltiradi? 🦷\n\nJag'da joy yetmasa, aql tishi qiyshiq o'sib qo'shni tishni itaradi. Ustidagi milk yallig'lanib shishadi, og'iz ochish qiyinlashadi. Shifokor rentgenga qarab, uni olib tashlash kerakmi — shuni aniqlaydi.\n\n💬 Aql tishingiz chiqqanmi?\n📍 Olmaliq\n\n⚠️ Ma'lumot uchun. Tashxis va davolashni shifokor belgilaydi.\n\n#olmaliq #almalyk #toshkentviloyati #stomatologiya #tishlar #sogliq #3d #ai_doxtir #aqltishi",
+ "tags": [
+  "stomatologiya",
+  "sogliq"
+ ]
+}

@@ -1,0 +1,6 @@
+build/
+out/
+tst/
+__pycache__/
+*.pyc
+.env

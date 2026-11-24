@@ -1,0 +1,247 @@
+{
+ "id": "e03_implant",
+ "num": 3,
+ "series": "Tish sirlari",
+ "title": "Implant qanday qo'yiladi",
+ "assets": {
+  "parts": {
+   "build": "implant_parts",
+   "params": {},
+   "turn": {
+    "frames": 24,
+    "from": -70,
+    "to": 60,
+    "tilt": 8
+   }
+  },
+  "i0": {
+   "build": "section",
+   "params": {
+    "no_tooth": true
+   }
+  },
+  "i1": {
+   "build": "section",
+   "params": {
+    "no_tooth": true,
+    "implant": "screw"
+   }
+  },
+  "i2": {
+   "build": "section",
+   "params": {
+    "no_tooth": true,
+    "implant": "abutment"
+   }
+  },
+  "i3": {
+   "build": "section",
+   "params": {
+    "no_tooth": true,
+    "implant": "crown"
+   }
+  }
+ },
+ "scenes": [
+  {
+   "type": "hook",
+   "dur": 3.6,
+   "img": "parts",
+   "pos": [
+    540,
+    1170
+   ],
+   "zoom": [
+    1.0,
+    1.15
+   ],
+   "lines": [
+    [
+     "Tishsiz qoldingizmi?",
+     76,
+     "teal"
+    ],
+    [
+     "*Implant* qanday",
+     86,
+     "teal"
+    ],
+    [
+     "qo'yiladi — 3D'da",
+     66,
+     "teal"
+    ]
+   ]
+  },
+  {
+   "type": "stages",
+   "steps": [
+    {
+     "img": "i0",
+     "dur": 4.0,
+     "view": [
+      1.35,
+      "abut"
+     ],
+     "badge": [
+      "1 · BO'SH JOY",
+      "amber"
+     ],
+     "lines": [
+      [
+       "Tish yo'q joyda",
+       70,
+       "teal"
+      ],
+      [
+       "suyak *yupqalashadi*",
+       72,
+       "amber"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "ring",
+       "at": "implant",
+       "color": "amber",
+       "r": 120
+      }
+     ]
+    },
+    {
+     "img": "i1",
+     "dur": 4.4,
+     "view": [
+      1.35,
+      "abut"
+     ],
+     "badge": [
+      "2 · TITAN VINT",
+      "blue"
+     ],
+     "lines": [
+      [
+       "Vint *suyakka*",
+       76,
+       "blue"
+      ],
+      [
+       "o'rnatiladi",
+       70,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "label",
+       "at": "implant",
+       "text": "Titan",
+       "color": "blue",
+       "to": [
+        800,
+        1180
+       ],
+       "side": "right",
+       "delay": 1.0
+      }
+     ]
+    },
+    {
+     "img": "i2",
+     "dur": 4.4,
+     "view": [
+      1.35,
+      "abut"
+     ],
+     "badge": [
+      "3 · BITISH",
+      "teal"
+     ],
+     "lines": [
+      [
+       "Bir necha oyda suyak",
+       66,
+       "teal"
+      ],
+      [
+       "vintni *mahkam* ushlaydi",
+       68,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "label",
+       "at": "abut",
+       "text": "Abatment",
+       "color": "teal",
+       "to": [
+        800,
+        900
+       ],
+       "side": "right",
+       "delay": 1.0
+      }
+     ]
+    },
+    {
+     "img": "i3",
+     "dur": 4.4,
+     "view": [
+      1.35,
+      "abut"
+     ],
+     "badge": [
+      "4 · TOJ",
+      "teal"
+     ],
+     "lines": [
+      [
+       "Ustiga *toj* qo'yiladi",
+       74,
+       "teal"
+      ],
+      [
+       "xuddi o'z tishingizdek",
+       62,
+       "teal"
+      ]
+     ],
+     "fx": [
+      {
+       "kind": "sparkle",
+       "at": "crown"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "cta",
+   "dur": 4.6,
+   "img": "parts",
+   "pos": [
+    540,
+    930
+   ],
+   "scale": 0.9,
+   "lines": [
+    [
+     "Implant sizga mosmi —",
+     66,
+     "teal"
+    ],
+    [
+     "*shifokor* aniqlaydi",
+     74,
+     "teal"
+    ]
+   ]
+  }
+ ],
+ "instagram": "Implant qanday qo'yiladi — 3D'da ko'ring 🦷\n\n1️⃣ Tish yo'q joyda vaqt o'tishi bilan suyak yupqalashadi\n2️⃣ Titan vint suyakka o'rnatiladi\n3️⃣ Bir necha oy ichida suyak vintni mahkam ushlab oladi\n4️⃣ Ustiga abatment va toj qo'yiladi\n\nImplant hammaga ham mos emas — buni shifokor tekshiruvdan keyin aytadi.\n\n💬 Implant haqida qanday savolingiz bor?\n📍 Olmaliq\n\n⚠️ Ma'lumot uchun. Tashxis va davolashni shifokor belgilaydi.\n\n#olmaliq #almalyk #toshkentviloyati #stomatologiya #tishlar #sogliq #3d #ai_doxtir #implant",
+ "tags": [
+  "stomatologiya",
+  "sogliq"
+ ]
+}
