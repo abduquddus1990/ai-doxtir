@@ -8,40 +8,85 @@
   "kon"
  ],
  "assets": {
-  "q0": {
-   "build": "quarry",
+  "fly": {
+   "build": "geo",
    "params": {
-    "trucks": 3
-   }
-  },
-  "q1": {
-   "build": "quarry",
-   "params": {
-    "trucks": 6
-   }
-  },
-  "truck": {
-   "build": "osprite",
-   "params": {
-    "kind": "truck"
+    "target": "karyer",
+    "dist": 14,
+    "tilt": 30,
+    "heading": 200,
+    "size": [
+     1080,
+     1920
+    ],
+    "fly": {
+     "frames": 5,
+     "dist_to": 6,
+     "heading_to": 170,
+     "tilt_to": 42
+    },
+    "exag": 1.3
    },
-   "samples": 24
+   "samples": 14
+  },
+  "top": {
+   "build": "geo",
+   "params": {
+    "target": "karyer",
+    "dist": 5.5,
+    "tilt": 75,
+    "heading": 180,
+    "size": [
+     1080,
+     1920
+    ],
+    "exag": 1.3
+   },
+   "samples": 14
+  },
+  "near": {
+   "build": "geo",
+   "params": {
+    "target": "karyer",
+    "dist": 3.2,
+    "tilt": 38,
+    "heading": 150,
+    "size": [
+     1080,
+     1920
+    ],
+    "exag": 1.3
+   },
+   "samples": 14
+  },
+  "wide": {
+   "build": "geo",
+   "params": {
+    "target": "karyer",
+    "dist": 9,
+    "tilt": 30,
+    "heading": 330,
+    "size": [
+     1080,
+     1920
+    ],
+    "pins": [
+     {
+      "at": "olmaliq",
+      "name": "city",
+      "marker": true
+     }
+    ],
+    "exag": 1.3
+   },
+   "samples": 14
   }
  },
  "scenes": [
   {
    "type": "hook",
-   "dur": 3.4,
-   "img": "q0",
-   "pos": [
-    540,
-    1170
-   ],
-   "zoom": [
-    0.95,
-    1.12
-   ],
-   "center": "center",
+   "dur": 3.6,
+   "img": "fly",
    "lines": [
     [
      "Olmaliq yonidagi",
@@ -64,12 +109,8 @@
    "type": "stages",
    "steps": [
     {
-     "img": "q0",
+     "img": "top",
      "dur": 4.2,
-     "view": [
-      1.05,
-      "center"
-     ],
      "badge": [
       "QALMOQQIR",
       "copper"
@@ -85,15 +126,19 @@
        86,
        "copper"
       ]
+     ],
+     "zoom": [
+      1.0,
+      1.1
+     ],
+     "view": [
+      1.0,
+      "center"
      ]
     },
     {
-     "img": "q0",
-     "dur": 4.2,
-     "view": [
-      1.5,
-      "bench"
-     ],
+     "img": "near",
+     "dur": 4.4,
      "badge": [
       "POG'ONALAR",
       "teal"
@@ -110,56 +155,51 @@
        "teal"
       ]
      ],
-     "fx": [
-      {
-       "kind": "ring",
-       "at": "bench",
-       "color": "amber",
-       "r": 110,
-       "delay": 0.8
-      }
+     "zoom": [
+      1.0,
+      1.15
+     ],
+     "view": [
+      1.0,
+      "center"
      ]
     },
     {
-     "img": "q1",
-     "dur": 4.2,
-     "view": [
-      1.15,
-      "truck"
-     ],
+     "img": "near",
+     "dur": 4.0,
      "badge": [
       "MIQYOS",
       "amber"
      ],
      "lines": [
       [
-       "Bu nuqtalar —",
-       70,
+       "Pog'onalar bo'ylab",
+       66,
        "teal"
       ],
       [
        "*ulkan yuk mashinalari*",
        70,
        "amber"
+      ],
+      [
+       "yuradi",
+       66,
+       "teal"
       ]
      ],
-     "fx": [
-      {
-       "kind": "ring",
-       "at": "truck",
-       "color": "coral",
-       "r": 70,
-       "delay": 0.6
-      }
+     "zoom": [
+      1.15,
+      1.25
+     ],
+     "view": [
+      1.0,
+      "center"
      ]
     },
     {
-     "img": "q1",
+     "img": "wide",
      "dur": 4.4,
-     "view": [
-      1.2,
-      "bottom"
-     ],
      "badge": [
       "ZANJIR BOSHI",
       "coral"
@@ -176,13 +216,13 @@
        "coral"
       ]
      ],
-     "fx": [
-      {
-       "kind": "arrow",
-       "from": "rim",
-       "at": "bottom",
-       "color": "coral"
-      }
+     "zoom": [
+      1.0,
+      1.1
+     ],
+     "view": [
+      1.0,
+      "center"
      ]
     }
    ]
@@ -190,13 +230,11 @@
   {
    "type": "cta",
    "dur": 4.6,
-   "img": "q1",
-   "pos": [
-    540,
-    980
+   "img": "top",
+   "zoom": [
+    1.1,
+    1.2
    ],
-   "scale": 0.9,
-   "center": "center",
    "lines": [
     [
      "Keyingi qism: toshdan",
@@ -211,5 +249,5 @@
    ]
   }
  ],
- "instagram": "Olmaliq yonidagi ulkan chuqurlik ichiga tushamiz ⛏\n\nQalmoqqir — ochiq usuldagi mis koni. Karyer pog'onama-pog'ona chuqurlashadi, pog'onalardagi kichik nuqtalar aslida ulkan yuk mashinalari. Bu yer — kombinat texnologik zanjirining boshlang'ich nuqtasi.\n\n💬 Karyerni yaqindan ko'rganmisiz?\n📍 Olmaliq\n\nManba: yuz.uz\n\n#olmaliq #almalyk #toshkentviloyati #olmaliqliklar #uzbekistan #3d #ai_olmaliq"
+ "instagram": "Olmaliq yonidagi ulkan chuqurlik ichiga tushamiz ⛏\n\nQalmoqqir — ochiq usuldagi mis koni. Karyer pog'onama-pog'ona chuqurlashadi, pog'onalar bo'ylab ulkan yuk mashinalari yuradi. Bu yer — kombinat texnologik zanjirining boshlang'ich nuqtasi.\n\nVideodagi karyer relyefi va sun'iy yo'ldosh surati — haqiqiy.\n\n💬 Karyerni yaqindan ko'rganmisiz?\n📍 Olmaliq\n\nManba: yuz.uz. Sun'iy yo'ldosh: Copernicus Sentinel-2 (2025), relyef: Copernicus DEM\n\n#olmaliq #almalyk #toshkentviloyati #olmaliqliklar #uzbekistan #3d #ai_olmaliq"
 }

@@ -452,6 +452,9 @@ BUILDERS = {"section": build_section, "wisdom": build_wisdom, "front": build_fro
             "implant_parts": build_implant_parts, "sprite": build_sprite}
 from engine import olmaliq3d as _olm  # @ai_olmaliq quruvchilari
 _olm.register(sys.modules[__name__]); BUILDERS.update(_olm.BUILDERS)
+from engine import geo3d as _geo  # haqiqiy relyef + sun'iy yo'ldosh (fotoreal)
+_geo.register(sys.modules[__name__]); BUILDERS.update(_geo.BUILDERS)
+FLY = {}
 
 # ------------------------------------------------------------------ lighting / render
 CAM = {}
@@ -489,13 +492,25 @@ def project_anchors():
     return out
 
 def render_asset(spec, out_png, quality="full"):
-    reset(); _MATS.clear(); ANCH.clear(); CAM.clear(); SIZE.clear()
+    reset(); _MATS.clear(); ANCH.clear(); CAM.clear(); SIZE.clear(); FLY.clear()
     root = BUILDERS[spec["build"]](spec.get("params", {}))
     s = scene()
     samples = {"full": spec.get("samples", 32), "preview": 6}[quality]
     s.cycles.samples = samples
     if quality == "preview":
         s.render.resolution_percentage = 50
+    if FLY:
+        n = FLY["n"] if quality == "full" else 3
+        if quality == "full": s.cycles.samples = spec.get("fly_samples", 16)
+        co = CAM["obj"]; mid = {}
+        for f in range(n):
+            loc, tgt = FLY["fn"](f / max(1, n - 1))
+            co.location = loc; co.rotation_euler = (Vector(tgt) - Vector(loc)).to_track_quat("-Z", "Y").to_euler()
+            if f == n // 2: mid = project_anchors()
+            s.render.filepath = out_png.replace(".png", f"_{f:03d}.png")
+            bpy.ops.render.render(write_still=True)
+        json.dump({"frames": n, "size": [SIZE["w"], SIZE["h"]], "anchors": mid, "full": True}, open(out_png.replace(".png", ".json"), "w"))
+        return
     turn = spec.get("turn")
     if turn:
         if root is None:
@@ -514,7 +529,7 @@ def render_asset(spec, out_png, quality="full"):
         return
     s.render.filepath = out_png
     bpy.ops.render.render(write_still=True)
-    json.dump({"size": [SIZE["w"], SIZE["h"]], "anchors": project_anchors()}, open(out_png.replace(".png", ".json"), "w"))
+    json.dump({"size": [SIZE["w"], SIZE["h"]], "anchors": project_anchors(), "full": spec["build"] == "geo"}, open(out_png.replace(".png", ".json"), "w"))
 
 if __name__ == "__main__":
     spec = json.loads(sys.argv[1]); out = sys.argv[2]; q = sys.argv[3] if len(sys.argv) > 3 else "full"

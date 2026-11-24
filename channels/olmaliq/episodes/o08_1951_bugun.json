@@ -8,46 +8,88 @@
   "tarix"
  ],
  "assets": {
-  "c0": {
-   "build": "terrain",
+  "fly": {
+   "build": "geo",
    "params": {
-    "trees": 14,
-    "city": 0.12,
-    "seed": 8
-   }
+    "target": "olmaliq",
+    "dist": 22,
+    "tilt": 25,
+    "heading": 160,
+    "size": [
+     1080,
+     1920
+    ],
+    "fly": {
+     "frames": 5,
+     "dist_to": 10,
+     "heading_to": 190,
+     "tilt_to": 40
+    },
+    "pins": [
+     {
+      "at": "olmaliq",
+      "name": "city",
+      "marker": true
+     }
+    ]
+   },
+   "samples": 14
   },
   "c1": {
-   "build": "terrain",
+   "build": "geo",
    "params": {
-    "trees": 8,
-    "city": 0.5,
-    "seed": 8
-   }
+    "target": "olmaliq",
+    "dist": 7,
+    "tilt": 55,
+    "heading": 210,
+    "size": [
+     1080,
+     1920
+    ]
+   },
+   "samples": 14
   },
   "c2": {
-   "build": "terrain",
+   "build": "geo",
    "params": {
-    "trees": 4,
-    "city": 1.0,
-    "pin": true,
-    "seed": 8
-   }
+    "target": "olmaliq",
+    "dist": 4.5,
+    "tilt": 40,
+    "heading": 240,
+    "size": [
+     1080,
+     1920
+    ]
+   },
+   "samples": 14
+  },
+  "c3": {
+   "build": "geo",
+   "params": {
+    "target": "olmaliq",
+    "dist": 14,
+    "tilt": 30,
+    "heading": 20,
+    "size": [
+     1080,
+     1920
+    ],
+    "pins": [
+     {
+      "at": "olmaliq",
+      "name": "city",
+      "marker": true
+     }
+    ]
+   },
+   "samples": 14
   }
  },
  "scenes": [
   {
    "type": "hook",
-   "dur": 3.4,
-   "img": "c0",
-   "pos": [
-    540,
-    1160
-   ],
-   "zoom": [
-    1.0,
-    1.1
-   ],
-   "center": "city",
+   "dur": 3.6,
+   "img": "fly",
    "lines": [
     [
      "*1951*-yildan",
@@ -70,12 +112,8 @@
    "type": "stages",
    "steps": [
     {
-     "img": "c0",
+     "img": "c1",
      "dur": 4.2,
-     "view": [
-      1.35,
-      "city"
-     ],
      "badge": [
       "1951",
       "copper"
@@ -91,15 +129,19 @@
        70,
        "teal"
       ]
+     ],
+     "zoom": [
+      1.0,
+      1.1
+     ],
+     "view": [
+      1.0,
+      "center"
      ]
     },
     {
-     "img": "c1",
+     "img": "c2",
      "dur": 4.2,
-     "view": [
-      1.2,
-      "city"
-     ],
      "badge": [
       "O'SISH",
       "teal"
@@ -115,15 +157,19 @@
        74,
        "teal"
       ]
+     ],
+     "zoom": [
+      1.0,
+      1.15
+     ],
+     "view": [
+      1.0,
+      "center"
      ]
     },
     {
-     "img": "c2",
+     "img": "c3",
      "dur": 4.6,
-     "view": [
-      1.05,
-      "city"
-     ],
      "badge": [
       "BUGUN",
       "coral"
@@ -140,12 +186,13 @@
        "coral"
       ]
      ],
-     "fx": [
-      {
-       "kind": "sparkle",
-       "at": "pin",
-       "delay": 0.8
-      }
+     "zoom": [
+      1.0,
+      1.1
+     ],
+     "view": [
+      1.0,
+      "city"
      ]
     }
    ]
@@ -153,13 +200,11 @@
   {
    "type": "cta",
    "dur": 4.6,
-   "img": "c2",
-   "pos": [
-    540,
-    980
+   "img": "c3",
+   "zoom": [
+    1.1,
+    1.2
    ],
-   "scale": 0.9,
-   "center": "center",
    "lines": [
     [
      "Eski Olmaliq rasmi",
@@ -174,5 +219,5 @@
    ]
   }
  ],
- "instagram": "Olmaliq: 1951-yildan bugungacha bir daqiqada 🏙\n\n1951-yil 10-iyulda Olmaliq shahar maqomini oldi. Kombinat rivojlangani sari shahar ham kengaydi va bugun Toshkent viloyatining yirik sanoat shaharlaridan biri.\n\n💬 Eski Olmaliq suratlari bormi? Izohda ulashing\n📍 Olmaliq\n\nManba: Britannica, Wikipedia\n\n#olmaliq #almalyk #toshkentviloyati #olmaliqliklar #uzbekistan #3d #ai_olmaliq #tarix"
+ "instagram": "Olmaliq: 1951-yildan bugungacha bir daqiqada 🏙\n\n1951-yil 10-iyulda Olmaliq shahar maqomini oldi. Kombinat rivojlangani sari shahar ham kengaydi va bugun Toshkent viloyatining yirik sanoat shaharlaridan biri.\n\nVideodagi shahar — 2025-yilgi haqiqiy sun'iy yo'ldosh surati.\n\n💬 Eski Olmaliq suratlari bormi? Izohda ulashing\n📍 Olmaliq\n\nManba: Britannica, Wikipedia. Sun'iy yo'ldosh: Copernicus Sentinel-2 (2025), relyef: Copernicus DEM\n\n#olmaliq #almalyk #toshkentviloyati #olmaliqliklar #uzbekistan #3d #ai_olmaliq #tarix"
 }

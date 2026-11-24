@@ -9,8 +9,10 @@ DIRS = {"doxtir": "episodes", "olmaliq": "channels/olmaliq/episodes"}
 
 def builder_doc(name):
     if SPECS[name]["doc"]: return SPECS[name]["doc"]
-    src = open(os.path.join(ROOT, "engine", "olmaliq3d.py"), encoding="utf-8").read()
-    return ast.get_docstring(ast.parse(src))
+    from tools.autogen import _spec
+    class C: pass
+    c = C(); c.name = name
+    return _spec(c)["doc"]
 
 def build(name):
     s = SPECS[name]

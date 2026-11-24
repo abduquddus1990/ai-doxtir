@@ -8,23 +8,47 @@
   "kelajak"
  ],
  "assets": {
-  "k0": {
-   "build": "terrain",
+  "fly": {
+   "build": "geo",
    "params": {
-    "trees": 6,
-    "city": 0.85,
-    "seed": 11
-   }
+    "target": "olmaliq",
+    "dist": 20,
+    "tilt": 24,
+    "heading": 200,
+    "size": [
+     1080,
+     1920
+    ],
+    "fly": {
+     "frames": 5,
+     "dist_to": 12,
+     "heading_to": 215,
+     "tilt_to": 34
+    },
+    "pins": [
+     {
+      "at": "olmaliq",
+      "name": "city",
+      "marker": true
+     }
+    ]
+   },
+   "samples": 14
   },
-  "k1": {
-   "build": "terrain",
+  "kar": {
+   "build": "geo",
    "params": {
-    "trees": 10,
-    "city": 1.0,
-    "future": true,
-    "pin": true,
-    "seed": 11
-   }
+    "target": "karyer",
+    "dist": 6,
+    "tilt": 45,
+    "heading": 170,
+    "size": [
+     1080,
+     1920
+    ],
+    "exag": 1.3
+   },
+   "samples": 14
   },
   "cath": {
    "build": "osprite",
@@ -51,17 +75,8 @@
  "scenes": [
   {
    "type": "hook",
-   "dur": 3.4,
-   "img": "k1",
-   "pos": [
-    540,
-    1160
-   ],
-   "zoom": [
-    0.95,
-    1.1
-   ],
-   "center": "city",
+   "dur": 3.6,
+   "img": "fly",
    "lines": [
     [
      "*2028*-yilda",
@@ -84,12 +99,8 @@
    "type": "stages",
    "steps": [
     {
-     "img": "k0",
+     "img": "fly",
      "dur": 3.8,
-     "view": [
-      1.15,
-      "city"
-     ],
      "badge": [
       "BUGUN",
       "teal"
@@ -100,15 +111,19 @@
        72,
        "teal"
       ]
+     ],
+     "zoom": [
+      1.1,
+      1.2
+     ],
+     "view": [
+      1.0,
+      "city"
      ]
     },
     {
-     "img": "k1",
+     "img": "kar",
      "dur": 4.2,
-     "view": [
-      1.15,
-      "city"
-     ],
      "badge": [
       "REJA",
       "copper"
@@ -124,6 +139,14 @@
        78,
        "copper"
       ]
+     ],
+     "zoom": [
+      1.0,
+      1.1
+     ],
+     "view": [
+      1.0,
+      "center"
      ]
     },
     {
@@ -188,13 +211,11 @@
   {
    "type": "cta",
    "dur": 4.6,
-   "img": "k1",
-   "pos": [
-    540,
-    980
+   "img": "fly",
+   "zoom": [
+    1.15,
+    1.25
    ],
-   "scale": 0.9,
-   "center": "center",
    "lines": [
     [
      "2028-yilda siz",
@@ -209,5 +230,5 @@
    ]
   }
  ],
- "instagram": "2028-yilda Olmaliq qanday bo'ladi? 🚀\n\nRejaga ko'ra, 2028-yilga borib kombinatning yillik quvvati 400 ming tonna mis, 50 tonna oltin va 270 tonna kumushga yetkazilishi rejalashtirilgan.\n\n💬 2028-yilda o'zingizni qayerda ko'rasiz?\n📍 Olmaliq\n\nManba: president.uz\n\n#olmaliq #almalyk #toshkentviloyati #olmaliqliklar #uzbekistan #3d #ai_olmaliq #kelajak"
+ "instagram": "2028-yilda Olmaliq qanday bo'ladi? 🚀\n\nRejaga ko'ra, 2028-yilga borib kombinatning yillik quvvati 400 ming tonna mis, 50 tonna oltin va 270 tonna kumushga yetkazilishi rejalashtirilgan.\n\n💬 2028-yilda o'zingizni qayerda ko'rasiz?\n📍 Olmaliq\n\nManba: president.uz. Sun'iy yo'ldosh: Copernicus Sentinel-2 (2025), relyef: Copernicus DEM\n\n#olmaliq #almalyk #toshkentviloyati #olmaliqliklar #uzbekistan #3d #ai_olmaliq #kelajak"
 }

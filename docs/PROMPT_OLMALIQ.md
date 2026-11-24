@@ -10,7 +10,23 @@ Siz @ai_olmaliq — faqat Olmaliq shahri haqida 30-40 soniyalik 3D Reels: tarix,
 
 Siz video dvigateli uchun epizod JSON fayllarini yozasiz. Dvigatel faqat quyidagilarni tushunadi — boshqa quruvchi, parametr, sahna turi ishlatmang.
 
-@ai_olmaliq — 3D sahna quruvchilari (Blender bpy). engine/model3d.py ichidan ro'yxatga olinadi.
+ASOSIY (fotoreal, imkon qadar shuni ishlating): @ai_olmaliq — HAQIQIY relyef va sun'iy yo'ldosh surati asosidagi 3D sahna (fotoreal).
+
+Ma'lumot: assets/geo/olmaliq_dem.png (Copernicus DEM GLO-30) + olmaliq_s2.jpg (Sentinel-2 L2A, 2025-08-10).
+Qamrov: 69.38–69.86 E, 40.72–41.00 N (~40×31 km). 1 Blender birligi = 1 km.
+
+build "geo" params:
+  target [lon, lat]     — kamera qaraydigan nuqta (yoki joy nomi: "olmaliq", "karyer", "qurama", "ohangaron", "dumba")
+  dist (km=12)          — kameradan nishongacha masofa
+  tilt (gradus=35)      — gorizontdan pastga qarash burchagi (90 = tepadan)
+  heading (gradus=0)    — kamera qayerdan qaraydi: 0 = shimoldan janubga, 180 = janubdan shimolga
+  lens (mm=35)  exag (1.6 — balandlik kuchaytirish)  sun (gradus balandlik=35)  sun_az (=135)
+  pins [{"at": joy yoki [lon,lat], "name": "anker_nomi"}] — ankerlar (yozuv/halqa uchun) va qizil belgi (marker: true bo'lsa)
+  fly {"frames": 12, "dist_to": 8, "heading_to": 20, "tilt_to": 45} — kamera harakati (videoda silliq uchish)
+Ankerlar: center + pins nomlari + barcha joy nomlari.
+geo sahnalarda: "zoom": [1.0, 1.1] (sekin yaqinlashish), "view": [1, "<anker>"] — fokus; geo asset hook/cta'da ham ishlatiladi.
+
+QO'SHIMCHA (yaqin plan obyektlar): @ai_olmaliq — 3D sahna quruvchilari (Blender bpy). engine/model3d.py ichidan ro'yxatga olinadi.
 
 Quruvchilar (asset "build" qiymati) va parametrlari:
   terrain   — vodiy dioramasi: Qurama tog'lari, daryo, olmazor, shahar.
@@ -69,53 +85,85 @@ Namuna epizodlar (format va uslub aynan shunday bo'lsin):
    "tarix"
   ],
   "assets": {
-   "v0": {
-    "build": "terrain",
+   "fly": {
+    "build": "geo",
     "params": {
-     "trees": 30,
-     "city": 0,
-     "seed": 3
-    }
-   },
-   "v1": {
-    "build": "terrain",
-    "params": {
-     "trees": 18,
-     "city": 0.35,
-     "seed": 3
-    }
-   },
-   "v2": {
-    "build": "terrain",
-    "params": {
-     "trees": 8,
-     "city": 0.9,
-     "pin": true,
-     "seed": 3
-    }
-   },
-   "apple": {
-    "build": "osprite",
-    "params": {
-     "kind": "apple"
+     "target": "ohangaron",
+     "dist": 24,
+     "tilt": 22,
+     "heading": 330,
+     "size": [
+      1080,
+      1920
+     ],
+     "fly": {
+      "frames": 5,
+      "dist_to": 15,
+      "heading_to": 345,
+      "tilt_to": 30
+     }
     },
-    "samples": 24
+    "samples": 14
+   },
+   "vod": {
+    "build": "geo",
+    "params": {
+     "target": "ohangaron",
+     "dist": 7,
+     "tilt": 38,
+     "heading": 20,
+     "size": [
+      1080,
+      1920
+     ]
+    },
+    "samples": 14
+   },
+   "city": {
+    "build": "geo",
+    "params": {
+     "target": "olmaliq",
+     "dist": 9,
+     "tilt": 45,
+     "heading": 200,
+     "size": [
+      1080,
+      1920
+     ],
+     "pins": [
+      {
+       "at": "olmaliq",
+       "name": "city",
+       "marker": true
+      }
+     ]
+    },
+    "samples": 14
+   },
+   "top": {
+    "build": "geo",
+    "params": {
+     "target": "olmaliq",
+     "dist": 6,
+     "tilt": 70,
+     "heading": 180,
+     "size": [
+      1080,
+      1920
+     ]
+    },
+    "samples": 14
    }
   },
   "scenes": [
    {
     "type": "hook",
-    "dur": 3.4,
-    "img": "v0",
-    "pos": [
-     540,
-     1180
-    ],
+    "dur": 3.6,
+    "img": "fly",
     "zoom": [
-     1.05,
-     1.2
+     1.0,
+     1.06
     ],
-    "center": "orchard",
     "lines": [
      [
       "Shahringiz *nomi*",
@@ -135,48 +183,39 @@ Namuna epizodlar (format va uslub aynan shunday bo'lsin):
     ]
    },
    {
-    "type": "cause",
-    "dur": 4.4,
-    "img": "v0",
-    "pos": [
-     540,
-     1250
-    ],
-    "scale": 1.0,
-    "center": "center",
-    "falling": [
-     "apple",
-     "apple",
-     "apple"
-    ],
-    "eat": false,
-    "badge": [
-     "QADIMDA",
-     "teal"
-    ],
-    "lines": [
-     [
-      "Vodiyda *yovvoyi olma*",
-      70,
-      "teal"
-     ],
-     [
-      "daraxtlari o'sgan",
-      66,
-      "teal"
-     ]
-    ]
-   },
-   {
     "type": "stages",
     "steps": [
      {
-      "img": "v0",
-      "dur": 4.0,
-      "view": [
-       1.5,
-       "orchard"
+      "img": "vod",
+      "dur": 4.4,
+      "badge": [
+       "QADIMDA",
+       "teal"
       ],
+      "lines": [
+       [
+        "Bu vodiyda *yovvoyi olma*",
+        66,
+        "teal"
+       ],
+       [
+        "daraxtlari o'sgan",
+        66,
+        "teal"
+       ]
+      ],
+      "zoom": [
+       1.0,
+       1.1
+      ],
+      "view": [
+       1.0,
+       "center"
+      ]
+     },
+     {
+      "img": "vod",
+      "dur": 4.0,
       "badge": [
        "OLMA + LIQ",
        "copper"
@@ -193,47 +232,46 @@ Namuna epizodlar (format va uslub aynan shunday bo'lsin):
         "teal"
        ]
       ],
-      "fx": [
-       {
-        "kind": "ring",
-        "at": "orchard",
-        "color": "coral",
-        "r": 150,
-        "delay": 0.8
-       }
+      "zoom": [
+       1.1,
+       1.2
+      ],
+      "view": [
+       1.0,
+       "center"
       ]
      },
      {
-      "img": "v1",
-      "dur": 3.8,
-      "view": [
-       1.15,
-       "city"
-      ],
+      "img": "city",
+      "dur": 4.2,
       "badge": [
-       "QISHLOQDAN SHAHARGA",
+       "BUGUN",
        "teal"
       ],
       "lines": [
        [
-        "Olmazor o'rnida",
+        "Olmazor o'rnida —",
         70,
         "teal"
        ],
        [
-        "*uylar* paydo bo'ldi",
-        70,
+        "*shahar*",
+        86,
         "teal"
        ]
+      ],
+      "zoom": [
+       1.0,
+       1.1
+      ],
+      "view": [
+       1.0,
+       "city"
       ]
      },
      {
-      "img": "v2",
+      "img": "top",
       "dur": 4.4,
-      "view": [
-       1.15,
-       "city"
-      ],
       "badge": [
        "1951-YIL 10-IYUL",
        "coral"
@@ -250,12 +288,13 @@ Namuna epizodlar (format va uslub aynan shunday bo'lsin):
         "teal"
        ]
       ],
-      "fx": [
-       {
-        "kind": "sparkle",
-        "at": "pin",
-        "delay": 0.8
-       }
+      "zoom": [
+       1.0,
+       1.1
+      ],
+      "view": [
+       1.0,
+       "center"
       ]
      }
     ]
@@ -263,13 +302,11 @@ Namuna epizodlar (format va uslub aynan shunday bo'lsin):
    {
     "type": "cta",
     "dur": 4.6,
-    "img": "v2",
-    "pos": [
-     540,
-     980
+    "img": "city",
+    "zoom": [
+     1.1,
+     1.18
     ],
-    "scale": 0.9,
-    "center": "center",
     "lines": [
      [
       "Siz qaysi *mavze*dasiz?",
@@ -284,7 +321,7 @@ Namuna epizodlar (format va uslub aynan shunday bo'lsin):
     ]
    }
   ],
-  "instagram": "Shahringiz nomi aslida nimani anglatadi? 🍎\n\nOlmaliq nomi vodiyda o'sgan yovvoyi olma daraxtlaridan olingan: \"olmasi ko'p joy\". Olmazor o'rnida qishloq, keyin shahar o'sdi. 1951-yil 10-iyulda Olmaliq shahar maqomini oldi.\n\n💬 Bobolaringizdan Olmaliqning eski olmazorlari haqida eshitganmisiz?\n📍 Olmaliq\n\nManba: Britannica, Wikipedia\n\n#olmaliq #almalyk #toshkentviloyati #olmaliqliklar #uzbekistan #3d #ai_olmaliq"
+  "instagram": "Shahringiz nomi aslida nimani anglatadi? 🍎\n\nOlmaliq nomi vodiyda o'sgan yovvoyi olma daraxtlaridan olingan: \"olmasi ko'p joy\". Olmazor o'rnida qishloq, keyin shahar o'sdi. 1951-yil 10-iyulda Olmaliq shahar maqomini oldi.\n\nVideodagi relyef va sun'iy yo'ldosh surati — haqiqiy.\n\n💬 Bobolaringizdan Olmaliqning eski olmazorlari haqida eshitganmisiz?\n📍 Olmaliq\n\nManba: Britannica, Wikipedia. Sun'iy yo'ldosh: Copernicus Sentinel-2 (2025), relyef: Copernicus DEM\n\n#olmaliq #almalyk #toshkentviloyati #olmaliqliklar #uzbekistan #3d #ai_olmaliq"
  },
  {
   "id": "o02_joylashuv",
@@ -296,39 +333,88 @@ Namuna epizodlar (format va uslub aynan shunday bo'lsin):
    "geografiya"
   ],
   "assets": {
-   "m0": {
-    "build": "terrain",
+   "fly": {
+    "build": "geo",
     "params": {
-     "trees": 6,
-     "city": 0.6,
-     "pin": true,
-     "seed": 5
-    }
+     "target": "olmaliq",
+     "dist": 26,
+     "tilt": 20,
+     "heading": 10,
+     "size": [
+      1080,
+      1920
+     ],
+     "fly": {
+      "frames": 5,
+      "dist_to": 17,
+      "heading_to": 0,
+      "tilt_to": 28
+     },
+     "pins": [
+      {
+       "at": "olmaliq",
+       "name": "city",
+       "marker": true
+      }
+     ]
+    },
+    "samples": 14
    },
-   "m1": {
-    "build": "terrain",
+   "qur": {
+    "build": "geo",
     "params": {
-     "trees": 6,
-     "city": 0.6,
-     "seed": 5,
-     "snow": true
-    }
+     "target": "qurama",
+     "dist": 14,
+     "tilt": 22,
+     "heading": 0,
+     "size": [
+      1080,
+      1920
+     ]
+    },
+    "samples": 14
+   },
+   "riv": {
+    "build": "geo",
+    "params": {
+     "target": "ohangaron",
+     "dist": 6,
+     "tilt": 50,
+     "heading": 190,
+     "size": [
+      1080,
+      1920
+     ]
+    },
+    "samples": 14
+   },
+   "mid": {
+    "build": "geo",
+    "params": {
+     "target": "olmaliq",
+     "dist": 11,
+     "tilt": 38,
+     "heading": 15,
+     "size": [
+      1080,
+      1920
+     ],
+     "pins": [
+      {
+       "at": "olmaliq",
+       "name": "city",
+       "marker": true
+      }
+     ]
+    },
+    "samples": 14
    }
   },
   "scenes": [
    {
     "type": "hook",
-    "dur": 3.4,
-    "img": "m0",
-    "pos": [
-     540,
-     1160
-    ],
-    "zoom": [
-     0.95,
-     1.08
-    ],
-    "center": "center",
+    "dur": 3.6,
+    "img": "fly",
     "lines": [
      [
       "Olmaliq nega",
@@ -351,12 +437,8 @@ Namuna epizodlar (format va uslub aynan shunday bo'lsin):
     "type": "stages",
     "steps": [
      {
-      "img": "m1",
+      "img": "qur",
       "dur": 4.4,
-      "view": [
-       1.25,
-       "mountain"
-      ],
       "badge": [
        "JANUBDA",
        "teal"
@@ -373,28 +455,18 @@ Namuna epizodlar (format va uslub aynan shunday bo'lsin):
         "teal"
        ]
       ],
-      "fx": [
-       {
-        "kind": "label",
-        "at": "mountain",
-        "text": "Qurama",
-        "color": "copper",
-        "to": [
-         330,
-         760
-        ],
-        "side": "left",
-        "delay": 1.0
-       }
+      "zoom": [
+       1.0,
+       1.1
+      ],
+      "view": [
+       1.0,
+       "center"
       ]
      },
      {
-      "img": "m1",
+      "img": "riv",
       "dur": 4.4,
-      "view": [
-       1.35,
-       "river"
-      ],
       "badge": [
        "SUV",
        "blue"
@@ -411,28 +483,18 @@ Namuna epizodlar (format va uslub aynan shunday bo'lsin):
         "teal"
        ]
       ],
-      "fx": [
-       {
-        "kind": "label",
-        "at": "river",
-        "text": "Ohangaron",
-        "color": "blue",
-        "to": [
-         820,
-         860
-        ],
-        "side": "left",
-        "delay": 1.0
-       }
+      "zoom": [
+       1.0,
+       1.1
+      ],
+      "view": [
+       1.0,
+       "center"
       ]
      },
      {
-      "img": "m0",
-      "dur": 4.4,
-      "view": [
-       1.3,
-       "city"
-      ],
+      "img": "mid",
+      "dur": 4.6,
       "badge": [
        "TOG' BAG'RIDA",
        "copper"
@@ -449,14 +511,13 @@ Namuna epizodlar (format va uslub aynan shunday bo'lsin):
         "teal"
        ]
       ],
-      "fx": [
-       {
-        "kind": "ring",
-        "at": "city",
-        "color": "coral",
-        "r": 120,
-        "delay": 0.8
-       }
+      "zoom": [
+       1.0,
+       1.1
+      ],
+      "view": [
+       1.0,
+       "city"
       ]
      }
     ]
@@ -464,13 +525,11 @@ Namuna epizodlar (format va uslub aynan shunday bo'lsin):
    {
     "type": "cta",
     "dur": 4.6,
-    "img": "m0",
-    "pos": [
-     540,
-     980
+    "img": "mid",
+    "zoom": [
+     1.1,
+     1.18
     ],
-    "scale": 0.9,
-    "center": "center",
     "lines": [
      [
       "Tog'lar, daryo va *ruda* —",
@@ -485,7 +544,7 @@ Namuna epizodlar (format va uslub aynan shunday bo'lsin):
     ]
    }
   ],
-  "instagram": "Olmaliq nega aynan shu yerda qurilgan? ⛰\n\nShahar Qurama tog'larining shimoliy yonbag'rida, Ohangaron daryosining chap qirg'og'ida joylashgan. Tog'larda — ruda konlari, vodiyda — suv va hosildor yer.\n\n💬 Qurama tog'lariga chiqqanmisiz?\n📍 Olmaliq\n\nManba: Britannica, Wikipedia\n\n#olmaliq #almalyk #toshkentviloyati #olmaliqliklar #uzbekistan #3d #ai_olmaliq"
+  "instagram": "Olmaliq nega aynan shu yerda qurilgan? ⛰\n\nShahar Qurama tog'larining shimoliy yonbag'rida, Ohangaron daryosining chap qirg'og'ida joylashgan. Tog'larda — ruda konlari, vodiyda — suv va hosildor yer.\n\nVideodagi relyef va sun'iy yo'ldosh surati — haqiqiy.\n\n💬 Qurama tog'lariga chiqqanmisiz?\n📍 Olmaliq\n\nManba: Britannica, Wikipedia. Sun'iy yo'ldosh: Copernicus Sentinel-2 (2025), relyef: Copernicus DEM\n\n#olmaliq #almalyk #toshkentviloyati #olmaliqliklar #uzbekistan #3d #ai_olmaliq"
  }
 ]
 ```

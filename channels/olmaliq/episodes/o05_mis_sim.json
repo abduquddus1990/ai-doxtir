@@ -8,11 +8,40 @@
   "kon"
  ],
  "assets": {
-  "r0": {
-   "build": "ore",
+  "fly": {
+   "build": "geo",
    "params": {
-    "split": 0
-   }
+    "target": "karyer",
+    "dist": 9,
+    "tilt": 35,
+    "heading": 160,
+    "size": [
+     1080,
+     1920
+    ],
+    "fly": {
+     "frames": 5,
+     "dist_to": 5,
+     "heading_to": 140,
+     "tilt_to": 45
+    },
+    "exag": 1.3
+   },
+   "samples": 14
+  },
+  "zav": {
+   "build": "geo",
+   "params": {
+    "target": "zavod",
+    "dist": 5,
+    "tilt": 45,
+    "heading": 200,
+    "size": [
+     1080,
+     1920
+    ]
+   },
+   "samples": 14
   },
   "f0": {
    "build": "flotation",
@@ -43,17 +72,8 @@
  "scenes": [
   {
    "type": "hook",
-   "dur": 3.4,
-   "img": "phone",
-   "pos": [
-    540,
-    1170
-   ],
-   "zoom": [
-    1.3,
-    1.45
-   ],
-   "center": "center",
+   "dur": 3.6,
+   "img": "fly",
    "lines": [
     [
      "Zaryadlagichingizdagi",
@@ -76,39 +96,39 @@
    "type": "stages",
    "steps": [
     {
-     "img": "r0",
-     "dur": 3.6,
-     "view": [
-      1.0,
-      "center"
-     ],
+     "img": "fly",
+     "dur": 3.8,
      "badge": [
-      "1 · RUDA",
+      "1 · KARYER",
       "copper"
      ],
      "lines": [
       [
-       "Karyerdan *ruda*",
+       "Qalmoqqirdan *ruda*",
        76,
        "teal"
       ]
+     ],
+     "zoom": [
+      1.1,
+      1.2
+     ],
+     "view": [
+      1.0,
+      "center"
      ]
     },
     {
-     "img": "f0",
+     "img": "zav",
      "dur": 3.8,
-     "view": [
-      0.95,
-      "tank"
-     ],
      "badge": [
       "2 · BOYITISH",
       "teal"
      ],
      "lines": [
       [
-       "Ruda maydalanib,",
-       66,
+       "Fabrikada ruda maydalanib,",
+       60,
        "teal"
       ],
       [
@@ -116,6 +136,14 @@
        70,
        "teal"
       ]
+     ],
+     "zoom": [
+      1.0,
+      1.1
+     ],
+     "view": [
+      1.0,
+      "center"
      ]
     },
     {
@@ -205,5 +233,5 @@
    ]
   }
  ],
- "instagram": "Telefon zaryadlagichingizdagi mis qayerdan kelgan? 🔌\n\nYo'l shunday: karyerdan ruda → maydalash va boyitish (konsentrat) → toza mis katod plastinalari → mis sim → kabel va zaryadlagich.\n\n💬 Uyingizdagi qaysi buyumda mis bor deb o'ylaysiz?\n📍 Olmaliq\n\nManba: yuz.uz, daryo.uz\n\n#olmaliq #almalyk #toshkentviloyati #olmaliqliklar #uzbekistan #3d #ai_olmaliq #elektronika"
+ "instagram": "Telefon zaryadlagichingizdagi mis qayerdan kelgan? 🔌\n\nYo'l shunday: Qalmoqqir karyeridan ruda → maydalash va boyitish (konsentrat) → toza mis katod plastinalari → mis sim → kabel va zaryadlagich.\n\n💬 Uyingizdagi qaysi buyumda mis bor deb o'ylaysiz?\n📍 Olmaliq\n\nManba: yuz.uz, daryo.uz. Sun'iy yo'ldosh: Copernicus Sentinel-2 (2025), relyef: Copernicus DEM\n\n#olmaliq #almalyk #toshkentviloyati #olmaliqliklar #uzbekistan #3d #ai_olmaliq #elektronika"
 }

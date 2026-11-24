@@ -8,6 +8,27 @@
   "kon"
  ],
  "assets": {
+  "fly": {
+   "build": "geo",
+   "params": {
+    "target": "karyer",
+    "dist": 10,
+    "tilt": 32,
+    "heading": 210,
+    "size": [
+     1080,
+     1920
+    ],
+    "fly": {
+     "frames": 5,
+     "dist_to": 5,
+     "heading_to": 180,
+     "tilt_to": 45
+    },
+    "exag": 1.3
+   },
+   "samples": 14
+  },
   "r0": {
    "build": "ore",
    "params": {
@@ -37,20 +58,16 @@
  "scenes": [
   {
    "type": "hook",
-   "dur": 3.4,
-   "img": "r0",
-   "pos": [
-    540,
-    1170
-   ],
-   "zoom": [
-    1.0,
-    1.15
-   ],
-   "center": "center",
+   "dur": 3.6,
+   "img": "fly",
    "lines": [
     [
-     "Oddiy *tosh*ga",
+     "Shu karyer toshi",
+     76,
+     "teal"
+    ],
+    [
+     "oddiy *tosh*ga",
      80,
      "teal"
     ],

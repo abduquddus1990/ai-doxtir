@@ -9,6 +9,26 @@
   "talim"
  ],
  "assets": {
+  "fly": {
+   "build": "geo",
+   "params": {
+    "target": "zavod",
+    "dist": 12,
+    "tilt": 30,
+    "heading": 220,
+    "size": [
+     1080,
+     1920
+    ],
+    "fly": {
+     "frames": 5,
+     "dist_to": 5,
+     "heading_to": 200,
+     "tilt_to": 45
+    }
+   },
+   "samples": 14
+  },
   "f0": {
    "build": "flotation",
    "params": {
@@ -27,31 +47,22 @@
  "scenes": [
   {
    "type": "hook",
-   "dur": 3.4,
-   "img": "f1",
-   "pos": [
-    540,
-    1170
-   ],
-   "zoom": [
-    1.0,
-    1.15
-   ],
-   "center": "bubble",
+   "dur": 3.6,
+   "img": "fly",
    "lines": [
     [
-     "Oddiy *pufakcha*",
-     80,
-     "teal"
-    ],
-    [
-     "misni yuqoriga",
+     "Shu fabrikada oddiy",
      70,
      "teal"
     ],
     [
-     "*ko'taradi*",
-     88,
+     "*pufakcha*",
+     84,
+     "teal"
+    ],
+    [
+     "misni *ko'taradi*",
+     76,
      "copper"
     ]
    ]
@@ -111,7 +122,7 @@
      "img": "f1",
      "dur": 4.4,
      "view": [
-      1.9,
+      1.6,
       "bubble"
      ],
      "badge": [

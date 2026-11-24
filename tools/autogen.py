@@ -38,7 +38,7 @@ SPECS = {
 - sprite: params.kind = bact_g|bact_p|sugar|soda|lemon|brush|candy (kichik obyektlar, "samples": 24).""",
     },
     "olmaliq": {
-        "builders": {"terrain", "quarry", "ore", "flotation", "globe", "shaft", "osprite"},
+        "builders": {"geo", "terrain", "quarry", "ore", "flotation", "globe", "shaft", "osprite"},
         "sprites": {"apple", "truck", "cathode", "wire", "gold", "silver", "helmet", "phone", "nugget"},
         "about": ("@ai_olmaliq — faqat Olmaliq shahri haqida 30-40 soniyalik 3D Reels: tarix, geografiya, kon-metallurgiya kombinati, "
                   "kasblar, shahar hayoti, tabiat, kelajak rejalari. Auditoriya: Olmaliq aholisi. Til: o'zbek (lotin). "
@@ -68,8 +68,11 @@ umumiy davomiylik 25-40 s. Har asset render ~1 daqiqa, shuning uchun bir xil ass
 def _spec(ch):
     s = dict(SPECS[ch.name])
     if s["doc"] is None:
-        from engine import olmaliq3d  # bpy importi faqat build vaqtida — bu yerda docstring kerak
-        s["doc"] = olmaliq3d.__doc__
+        import ast
+        d = lambda f: ast.get_docstring(ast.parse(open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "engine", f), encoding="utf-8").read()))
+        s["doc"] = ("ASOSIY (fotoreal, imkon qadar shuni ishlating): " + d("geo3d.py")
+                    + "\ngeo sahnalarda: \"zoom\": [1.0, 1.1] (sekin yaqinlashish), \"view\": [1, \"<anker>\"] — fokus; "
+                    + "geo asset hook/cta'da ham ishlatiladi.\n\nQO'SHIMCHA (yaqin plan obyektlar): " + d("olmaliq3d.py"))
     return s
 
 def _examples(ch, n=4):

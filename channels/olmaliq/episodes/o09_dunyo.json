@@ -20,12 +20,32 @@
     "arcs": 4
    }
   },
-  "cath": {
-   "build": "osprite",
+  "land": {
+   "build": "geo",
    "params": {
-    "kind": "cathode"
+    "target": "olmaliq",
+    "dist": 16,
+    "tilt": 32,
+    "heading": 200,
+    "size": [
+     1080,
+     1920
+    ],
+    "fly": {
+     "frames": 5,
+     "dist_to": 8,
+     "heading_to": 200,
+     "tilt_to": 45
+    },
+    "pins": [
+     {
+      "at": "olmaliq",
+      "name": "city",
+      "marker": true
+     }
+    ]
    },
-   "samples": 24
+   "samples": 14
   }
  },
  "scenes": [
@@ -60,7 +80,7 @@
    "steps": [
     {
      "img": "g0",
-     "dur": 4.0,
+     "dur": 3.6,
      "view": [
       1.6,
       "olmaliq"
@@ -84,6 +104,29 @@
        "r": 60,
        "delay": 0.6
       }
+     ]
+    },
+    {
+     "img": "land",
+     "dur": 4.0,
+     "badge": [
+      "YAQINROQ",
+      "copper"
+     ],
+     "lines": [
+      [
+       "Mana — *Olmaliq*",
+       80,
+       "copper"
+      ]
+     ],
+     "zoom": [
+      1.0,
+      1.1
+     ],
+     "view": [
+      1.0,
+      "city"
      ]
     },
     {
@@ -144,12 +187,11 @@
   {
    "type": "cta",
    "dur": 4.6,
-   "img": "cath",
-   "pos": [
-    540,
-    950
+   "img": "land",
+   "zoom": [
+    1.1,
+    1.2
    ],
-   "scale": 1.3,
    "lines": [
     [
      "Olmaliq bilan",
@@ -164,5 +206,5 @@
    ]
   }
  ],
- "instagram": "Dunyo xaritasida Olmaliq qayerda? 🌍\n\nOlmaliq kon-metallurgiya kombinati mis ishlab chiqarish bo'yicha dunyodagi 30 ta eng yirik korxona safida. Olmaliq misi dunyo bozorlariga yo'l oladi.\n\n💬 Olmaliq bilan faxrlanasizmi?\n📍 Olmaliq\n\nManba: yuz.uz\n\n#olmaliq #almalyk #toshkentviloyati #olmaliqliklar #uzbekistan #3d #ai_olmaliq #logistika"
+ "instagram": "Dunyo xaritasida Olmaliq qayerda? 🌍\n\nOlmaliq kon-metallurgiya kombinati mis ishlab chiqarish bo'yicha dunyodagi 30 ta eng yirik korxona safida. Olmaliq misi dunyo bozorlariga yo'l oladi.\n\n💬 Olmaliq bilan faxrlanasizmi?\n📍 Olmaliq\n\nManba: yuz.uz. Globus: NASA Blue Marble. Sun'iy yo'ldosh: Copernicus Sentinel-2 (2025), relyef: Copernicus DEM\n\n#olmaliq #almalyk #toshkentviloyati #olmaliqliklar #uzbekistan #3d #ai_olmaliq #logistika"
 }

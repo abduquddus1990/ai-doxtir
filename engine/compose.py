@@ -84,6 +84,15 @@ def make_bg():
         img = img * (1 - m[..., None]) + np.array(COL["teal"], np.float32) * m[..., None]
     return Image.fromarray(img.astype(np.uint8)).convert("RGBA")
 
+_GRAD = {}
+def top_shade():
+    if "g" not in _GRAD:
+        a = np.zeros((H, W, 4), np.uint8); y = np.arange(H, dtype=np.float32)
+        al = np.clip(1 - y / 820, 0, 1) ** 1.6 * 175 + np.clip((y - 1500) / 420, 0, 1) ** 1.5 * 120
+        a[..., 3] = al[:, None].astype(np.uint8); a[..., :3] = (8, 16, 22)
+        _GRAD["g"] = Image.fromarray(a)
+    return _GRAD["g"]
+
 # ------------------------------------------------------------------ drawing helpers
 def paste_clip(canvas, im, x0, y0):
     cx0, cy0 = max(0, -x0), max(0, -y0)
@@ -116,7 +125,13 @@ def place(canvas, sprite, cx, cy, scale, rot=0.0, alpha=1.0, shadow=True):
         paste_clip(canvas, sh, int(cx - s.width / 2), int(cy - s.height / 2 + 28))
     paste_clip(canvas, s, int(cx - s.width / 2), int(cy - s.height / 2))
 
+TEXT = {"light": False}   # True: fon — fotoreal kadr, matn oq va soyali
+LIGHT_ACC = {"teal": (70, 235, 215), "copper": (255, 170, 110), "amber": (255, 205, 90), "coral": (255, 110, 125),
+             "blue": (120, 190, 255), "grey": (220, 228, 232), "orange": (255, 160, 80), "green": (130, 230, 130)}
+
 def rich(canvas, y, text, size=72, alpha=1.0, acc="teal", base="ink", maxw=960):
+    light = TEXT["light"] and base == "ink"
+    if light: base = "white"
     f = font(size); words = text.split(" "); lines, cur = [], ""
     for w_ in words:
         test = (cur + " " + w_).strip()
@@ -130,7 +145,14 @@ def rich(canvas, y, text, size=72, alpha=1.0, acc="teal", base="ink", maxw=960):
         for j, p in enumerate(parts):
             if j > 0: state = not state
             c = C(acc) if state else C(base)
-            d.text((x, yy), p, font=f, fill=(*c, int(255 * alpha)), anchor="lm"); x += widths[j]
+            if light:
+                if state and isinstance(acc, str): c = LIGHT_ACC.get(acc, c)
+                d.text((x + 3, yy + 5), p, font=f, fill=(0, 0, 0, int(120 * alpha)), anchor="lm")
+                d.text((x, yy), p, font=f, fill=(*c, int(255 * alpha)), anchor="lm",
+                       stroke_width=max(2, size // 16), stroke_fill=(10, 18, 24, int(200 * alpha)))
+            else:
+                d.text((x, yy), p, font=f, fill=(*c, int(255 * alpha)), anchor="lm")
+            x += widths[j]
     return y + len(lines) * size * 1.18
 
 def lines_block(canvas, lines, lt, y0=340, step_delay=0.3):
@@ -215,7 +237,7 @@ class Episode:
         self.logo = load_logo(cfg.get("logo"), 56)
         self.sp_logo = load_logo(sponsor.get("logo"), 240) if sponsor else None
         self.ep["scenes"] = insert_sponsor(self.ep["scenes"], sponsor)
-        self.sp_start = None
+        self.sp_start = None; self.full_map = {}
         t = 0.0; self.timeline = []
         for sc in self.ep["scenes"]:
             if sc["type"] == "stages":
@@ -226,6 +248,25 @@ class Episode:
             self.timeline.append((t, t + d, sc)); t += d
         self.dur = t
         self.cuts = [a for (a, b, s) in self.timeline[1:]]
+
+    # ---- full-bleed (fotoreal geo kadrlar)
+    def is_full(self, name): return bool(self.A[name].meta.get("full"))
+
+    def draw_full(self, c, name, u, zoom=(1.0, 1.1), focus=None, alpha=1.0):
+        A = self.A[name]; im = A.at(u) if A.frames else A.img
+        z = lerp(zoom[0], zoom[1], ease(u))
+        s = max(W / im.width, H / im.height) * z
+        fx, fy = (self.anchor(name, focus) if focus else (im.width / 2, im.height / 2))
+        ox = min(0, max(W - im.width * s, W / 2 - fx * s)); oy = min(0, max(H - im.height * s, H * 0.55 - fy * s))
+        big = im.resize((int(im.width * s) + 1, int(im.height * s) + 1), Image.BICUBIC)
+        if alpha < 1:
+            a = np.array(big); a[:, :, 3] = (a[:, :, 3] * alpha).astype(np.uint8); big = Image.fromarray(a)
+        paste_clip(c, big, int(ox), int(oy))
+        self.full_map[name] = (s, ox, oy); TEXT["light"] = True
+
+    def full_pt(self, name, key):
+        s, ox, oy = self.full_map[name]; px, py = self.anchor(name, key)
+        return ox + px * s, oy + py * s
 
     # ---- stage view helpers
     def anchor(self, asset, name):
@@ -249,11 +290,16 @@ class Episode:
         paste_clip(canvas, big, int(W / 2 - cx * s), int(1000 + yoff - cy * s))
 
     def scr(self, view, asset, key, yoff=0):
+        if asset in self.full_map and self.is_full(asset): return self.full_pt(asset, key)
         s, cx, cy = view; px, py = self.anchor(asset, key)
         return W / 2 + (px - cx) * s, 1000 + yoff + (py - cy) * s
 
     # ---- scenes
     def sc_hook(self, c, sc, lt, dur):
+        if self.is_full(sc["img"]):
+            self.draw_full(c, sc["img"], lt / dur, sc.get("zoom", [1.0, 1.12]), sc.get("center")); c.alpha_composite(top_shade())
+            if "series" in self.ep: badge(c, W / 2, 200, f'{self.ep["series"].upper()} #{self.ep["num"]}', "teal", eout(lt / 0.4), 30)
+            lines_block(c, sc["lines"], lt, 300, 0.55); return
         A = self.A[sc["img"]]
         im = A.at(lt / dur) if A.frames else A.img
         z0, z1 = sc.get("zoom", [0.95, 1.12])
@@ -305,6 +351,18 @@ class Episode:
             tb += s["dur"]
         st = steps[idx]; sl = lt - st_start
         prev = steps[idx - 1] if idx > 0 else None
+        if self.is_full(st["img"]):
+            zoom = st.get("zoom", [1.0, 1.1]); focus = st.get("view", [1, None])[1]
+            if prev and self.is_full(prev["img"]) and sl < 0.7:
+                pz = prev.get("zoom", [1.0, 1.1]); self.draw_full(c, prev["img"], 1.0, pz, prev.get("view", [1, None])[1])
+                self.draw_full(c, st["img"], sl / st["dur"], zoom, focus, alpha=ease(sl / 0.7))
+            else:
+                self.draw_full(c, st["img"], sl / st["dur"], zoom, focus)
+            c.alpha_composite(top_shade())
+            b = st.get("badge")
+            if b: badge(c, W / 2, 230, b[0], b[1], eout(sl / 0.4))
+            lines_block(c, st.get("lines", []), sl, 340, 0.3)
+            self.fx(c, st, sl, None, 0); return
         # camera
         v1 = self.view_of(st)
         if prev:
@@ -325,6 +383,9 @@ class Episode:
         b = st.get("badge")
         if b: badge(c, W / 2, 230, b[0], b[1], eout(sl / 0.4))
         lines_block(c, st.get("lines", []), sl, 340, 0.3)
+        self.fx(c, st, sl, view, yoff)
+
+    def fx(self, c, st, sl, view, yoff):
         d = ImageDraw.Draw(c)
         for f in st.get("fx", []):
             k = f["kind"]; dl = f.get("delay", 1.0); a = ease((sl - dl) / 0.35)
@@ -341,7 +402,7 @@ class Episode:
                     bolt(d, x + dx * R, y + dy * R * 0.8, f.get("size", 50), f.get("color", "orange"), aa)
             elif k == "glow":
                 x, y = self.scr(view, st["img"], f["at"], yoff)
-                glow(c, x, y + f.get("dy", 0), f.get("r", 170) * view[0] / 1.55, f.get("color", "coral"), a * (0.55 + 0.45 * abs(math.sin(sl * 5))))
+                glow(c, x, y + f.get("dy", 0), f.get("r", 170) * (view[0] if view else 1.55) / 1.55, f.get("color", "coral"), a * (0.55 + 0.45 * abs(math.sin(sl * 5))))
                 d = ImageDraw.Draw(c)
             elif k == "sparkle":
                 x, y = self.scr(view, st["img"], f["at"], yoff)
@@ -427,7 +488,9 @@ class Episode:
     def sc_cta(self, c, sc, lt, dur):
         A = self.A[sc["img"]]; im = A.at(0.5) if A.frames else A.img
         pos = sc.get("pos", [540, 900])
-        if A.frames: place(c, im, pos[0], pos[1], sc.get("scale", 0.95) + 0.03 * lt, alpha=ease(lt / 0.4))
+        if self.is_full(sc["img"]):
+            self.draw_full(c, sc["img"], lt / dur, sc.get("zoom", [1.05, 1.15]), sc.get("center")); c.alpha_composite(top_shade())
+        elif A.frames: place(c, im, pos[0], pos[1], sc.get("scale", 0.95) + 0.03 * lt, alpha=ease(lt / 0.4))
         else: self.draw_view(c, im, (sc.get("scale", 1.0) * (1 + 0.02 * lt), *self.anchor(sc["img"], sc.get("center", "crown"))), lt, yoff=pos[1] - 1000, alpha=ease(lt / 0.4))
         d = ImageDraw.Draw(c)
         for k, (dx, dy, s) in enumerate([(-260, -260, 40), (240, -200, 30), (280, 120, 34), (-280, 140, 26)]):
@@ -447,12 +510,13 @@ class Episode:
         f2 = font(34, "SemiBold")
         while f2.size > 22 and f2.getlength(sub) > W - 300: f2 = font(f2.size - 2, "SemiBold")
         d.text((W / 2, 1568), sub, font=f2, fill=(*COL["ink"], int(205 * a)), anchor="mm")
-        if cfg.get("cta_footer"): d.text((W / 2, 1700), cfg["cta_footer"], font=font(36, "Bold"), fill=(*COL["ink"], int(220 * a)), anchor="mm")
+        lt_ = TEXT["light"]
+        if cfg.get("cta_footer"): d.text((W / 2, 1700), cfg["cta_footer"], font=font(36, "Bold"), fill=((255, 255, 255) if lt_ else COL["ink"]) + (int(230 * a),), anchor="mm")
         disc = self.ep.get("disclaimer", cfg.get("disclaimer", ""))
-        if disc: d.text((W / 2, 1830), disc, font=font(26, "SemiBold"), fill=(*COL["grey"], int(255 * a)), anchor="mm")
+        if disc: d.text((W / 2, 1830), disc, font=font(26, "SemiBold"), fill=((225, 232, 236) if lt_ else COL["grey"]) + (int(255 * a),), anchor="mm")
 
     def frame(self, t):
-        c = self.BG.copy()
+        c = self.BG.copy(); TEXT["light"] = False
         for i, (a, b, sc) in enumerate(self.timeline):
             if a <= t < b or (i == len(self.timeline) - 1 and t >= a):
                 lt = t - a; dur = b - a
@@ -466,7 +530,7 @@ class Episode:
         if self.logo is not None:
             gx = W / 2 - (hw + 66) / 2
             c.alpha_composite(self.logo, (int(gx), 72)); d = ImageDraw.Draw(c)
-            d.text((gx + 66, 100), self.cfg["handle"], font=hf, fill=(*COL["ink"], 170), anchor="lm")
+            d.text((gx + 66, 100), self.cfg["handle"], font=hf, fill=(255, 255, 255, 230) if TEXT["light"] else (*COL["ink"], 170), anchor="lm")
         else:
             d.text((W / 2, 100), self.cfg["handle"], font=hf, fill=(*COL["ink"], 150), anchor="mm")
         if self.cfg.get("stamp"):

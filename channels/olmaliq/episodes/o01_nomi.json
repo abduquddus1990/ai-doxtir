@@ -8,53 +8,85 @@
   "tarix"
  ],
  "assets": {
-  "v0": {
-   "build": "terrain",
+  "fly": {
+   "build": "geo",
    "params": {
-    "trees": 30,
-    "city": 0,
-    "seed": 3
-   }
-  },
-  "v1": {
-   "build": "terrain",
-   "params": {
-    "trees": 18,
-    "city": 0.35,
-    "seed": 3
-   }
-  },
-  "v2": {
-   "build": "terrain",
-   "params": {
-    "trees": 8,
-    "city": 0.9,
-    "pin": true,
-    "seed": 3
-   }
-  },
-  "apple": {
-   "build": "osprite",
-   "params": {
-    "kind": "apple"
+    "target": "ohangaron",
+    "dist": 24,
+    "tilt": 22,
+    "heading": 330,
+    "size": [
+     1080,
+     1920
+    ],
+    "fly": {
+     "frames": 5,
+     "dist_to": 15,
+     "heading_to": 345,
+     "tilt_to": 30
+    }
    },
-   "samples": 24
+   "samples": 14
+  },
+  "vod": {
+   "build": "geo",
+   "params": {
+    "target": "ohangaron",
+    "dist": 7,
+    "tilt": 38,
+    "heading": 20,
+    "size": [
+     1080,
+     1920
+    ]
+   },
+   "samples": 14
+  },
+  "city": {
+   "build": "geo",
+   "params": {
+    "target": "olmaliq",
+    "dist": 9,
+    "tilt": 45,
+    "heading": 200,
+    "size": [
+     1080,
+     1920
+    ],
+    "pins": [
+     {
+      "at": "olmaliq",
+      "name": "city",
+      "marker": true
+     }
+    ]
+   },
+   "samples": 14
+  },
+  "top": {
+   "build": "geo",
+   "params": {
+    "target": "olmaliq",
+    "dist": 6,
+    "tilt": 70,
+    "heading": 180,
+    "size": [
+     1080,
+     1920
+    ]
+   },
+   "samples": 14
   }
  },
  "scenes": [
   {
    "type": "hook",
-   "dur": 3.4,
-   "img": "v0",
-   "pos": [
-    540,
-    1180
-   ],
+   "dur": 3.6,
+   "img": "fly",
    "zoom": [
-    1.05,
-    1.2
+    1.0,
+    1.06
    ],
-   "center": "orchard",
    "lines": [
     [
      "Shahringiz *nomi*",
@@ -74,48 +106,39 @@
    ]
   },
   {
-   "type": "cause",
-   "dur": 4.4,
-   "img": "v0",
-   "pos": [
-    540,
-    1250
-   ],
-   "scale": 1.0,
-   "center": "center",
-   "falling": [
-    "apple",
-    "apple",
-    "apple"
-   ],
-   "eat": false,
-   "badge": [
-    "QADIMDA",
-    "teal"
-   ],
-   "lines": [
-    [
-     "Vodiyda *yovvoyi olma*",
-     70,
-     "teal"
-    ],
-    [
-     "daraxtlari o'sgan",
-     66,
-     "teal"
-    ]
-   ]
-  },
-  {
    "type": "stages",
    "steps": [
     {
-     "img": "v0",
-     "dur": 4.0,
-     "view": [
-      1.5,
-      "orchard"
+     "img": "vod",
+     "dur": 4.4,
+     "badge": [
+      "QADIMDA",
+      "teal"
      ],
+     "lines": [
+      [
+       "Bu vodiyda *yovvoyi olma*",
+       66,
+       "teal"
+      ],
+      [
+       "daraxtlari o'sgan",
+       66,
+       "teal"
+      ]
+     ],
+     "zoom": [
+      1.0,
+      1.1
+     ],
+     "view": [
+      1.0,
+      "center"
+     ]
+    },
+    {
+     "img": "vod",
+     "dur": 4.0,
      "badge": [
       "OLMA + LIQ",
       "copper"
@@ -132,47 +155,46 @@
        "teal"
       ]
      ],
-     "fx": [
-      {
-       "kind": "ring",
-       "at": "orchard",
-       "color": "coral",
-       "r": 150,
-       "delay": 0.8
-      }
+     "zoom": [
+      1.1,
+      1.2
+     ],
+     "view": [
+      1.0,
+      "center"
      ]
     },
     {
-     "img": "v1",
-     "dur": 3.8,
-     "view": [
-      1.15,
-      "city"
-     ],
+     "img": "city",
+     "dur": 4.2,
      "badge": [
-      "QISHLOQDAN SHAHARGA",
+      "BUGUN",
       "teal"
      ],
      "lines": [
       [
-       "Olmazor o'rnida",
+       "Olmazor o'rnida —",
        70,
        "teal"
       ],
       [
-       "*uylar* paydo bo'ldi",
-       70,
+       "*shahar*",
+       86,
        "teal"
       ]
+     ],
+     "zoom": [
+      1.0,
+      1.1
+     ],
+     "view": [
+      1.0,
+      "city"
      ]
     },
     {
-     "img": "v2",
+     "img": "top",
      "dur": 4.4,
-     "view": [
-      1.15,
-      "city"
-     ],
      "badge": [
       "1951-YIL 10-IYUL",
       "coral"
@@ -189,12 +211,13 @@
        "teal"
       ]
      ],
-     "fx": [
-      {
-       "kind": "sparkle",
-       "at": "pin",
-       "delay": 0.8
-      }
+     "zoom": [
+      1.0,
+      1.1
+     ],
+     "view": [
+      1.0,
+      "center"
      ]
     }
    ]
@@ -202,13 +225,11 @@
   {
    "type": "cta",
    "dur": 4.6,
-   "img": "v2",
-   "pos": [
-    540,
-    980
+   "img": "city",
+   "zoom": [
+    1.1,
+    1.18
    ],
-   "scale": 0.9,
-   "center": "center",
    "lines": [
     [
      "Siz qaysi *mavze*dasiz?",
@@ -223,5 +244,5 @@
    ]
   }
  ],
- "instagram": "Shahringiz nomi aslida nimani anglatadi? 🍎\n\nOlmaliq nomi vodiyda o'sgan yovvoyi olma daraxtlaridan olingan: \"olmasi ko'p joy\". Olmazor o'rnida qishloq, keyin shahar o'sdi. 1951-yil 10-iyulda Olmaliq shahar maqomini oldi.\n\n💬 Bobolaringizdan Olmaliqning eski olmazorlari haqida eshitganmisiz?\n📍 Olmaliq\n\nManba: Britannica, Wikipedia\n\n#olmaliq #almalyk #toshkentviloyati #olmaliqliklar #uzbekistan #3d #ai_olmaliq"
+ "instagram": "Shahringiz nomi aslida nimani anglatadi? 🍎\n\nOlmaliq nomi vodiyda o'sgan yovvoyi olma daraxtlaridan olingan: \"olmasi ko'p joy\". Olmazor o'rnida qishloq, keyin shahar o'sdi. 1951-yil 10-iyulda Olmaliq shahar maqomini oldi.\n\nVideodagi relyef va sun'iy yo'ldosh surati — haqiqiy.\n\n💬 Bobolaringizdan Olmaliqning eski olmazorlari haqida eshitganmisiz?\n📍 Olmaliq\n\nManba: Britannica, Wikipedia. Sun'iy yo'ldosh: Copernicus Sentinel-2 (2025), relyef: Copernicus DEM\n\n#olmaliq #almalyk #toshkentviloyati #olmaliqliklar #uzbekistan #3d #ai_olmaliq"
 }
