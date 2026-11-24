@@ -1,11 +1,16 @@
 {
  "sent": [
-  "e01_karies"
+  "e01_karies",
+  "e02_tish_toshi"
  ],
  "log": {
   "2026-11-24": [
    "e01_karies"
+  ],
+  "2026-11-24_manual": [
+   "e02_tish_toshi"
   ]
  },
- "sponsor_counts": {}
+ "sponsor_counts": {},
+ "failed": []
 }
