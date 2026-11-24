@@ -1,14 +1,14 @@
 name: AI Doxtir video
 
 # Toshkent vaqti = UTC + 5. Har kuni 2 slot, har slotda @ai_doxtir + @ai_olmaliq videolari:
-#   06:00 (am) va 19:00 (pm). Render ~25 daqiqa oldin boshlanadi, video aniq vaqtda yuboriladi (run.py --send-at auto).
-#   Zaxira ishlar (06:20, 19:20) faqat slot hali yuborilmagan bo'lsa ishlaydi (data/sent*.json).
+#   06:00 (am) va 19:00 (pm). Render ~45 daqiqa oldin boshlanadi, video aniq vaqtda yuboriladi (run.py --send-at auto).
+#   Zaxira ishlar (06:30, 19:30) faqat slot hali yuborilmagan bo'lsa ishlaydi (data/sent*.json).
 on:
   schedule:
-    - cron: "35 0 * * *"     # 05:35 Toshkent → 06:00 da yuboradi
-    - cron: "20 1 * * *"     # 06:20 — zaxira
-    - cron: "35 13 * * *"    # 18:35 Toshkent → 19:00 da yuboradi
-    - cron: "20 14 * * *"    # 19:20 — zaxira
+    - cron: "15 0 * * *"     # 05:15 Toshkent → 06:00 da yuboradi
+    - cron: "30 1 * * *"     # 06:30 — zaxira
+    - cron: "15 13 * * *"    # 18:15 Toshkent → 19:00 da yuboradi
+    - cron: "30 14 * * *"    # 19:30 — zaxira
   workflow_dispatch:
     inputs:
       channel:
