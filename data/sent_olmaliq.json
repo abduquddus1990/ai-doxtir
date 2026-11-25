@@ -2,7 +2,8 @@
  "sent": [
   "o01_nomi",
   "o02_joylashuv",
-  "o03_karyer"
+  "o03_karyer",
+  "o04_13_metall"
  ],
  "log": {
   "2026-11-24_manual": [
@@ -11,6 +12,9 @@
   ],
   "2026-11-25_manual": [
    "o03_karyer"
+  ],
+  "2026-11-26_am": [
+   "o04_13_metall"
   ]
  },
  "sponsor_counts": {},
