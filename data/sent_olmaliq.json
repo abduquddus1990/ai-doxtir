@@ -1,12 +1,16 @@
 {
  "sent": [
   "o01_nomi",
-  "o02_joylashuv"
+  "o02_joylashuv",
+  "o03_karyer"
  ],
  "log": {
   "2026-11-24_manual": [
    "o01_nomi",
    "o02_joylashuv"
+  ],
+  "2026-11-25_manual": [
+   "o03_karyer"
   ]
  },
  "sponsor_counts": {},
