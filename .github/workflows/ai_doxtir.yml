@@ -5,10 +5,13 @@ name: AI Doxtir video
 #   Zaxira ishlar (06:30, 19:30) faqat slot hali yuborilmagan bo'lsa ishlaydi (data/sent*.json).
 on:
   schedule:
-    - cron: "15 0 * * *"     # 05:15 Toshkent → 06:00 da yuboradi
-    - cron: "30 1 * * *"     # 06:30 — zaxira
-    - cron: "15 13 * * *"    # 18:15 Toshkent → 19:00 da yuboradi
-    - cron: "30 14 * * *"    # 19:30 — zaxira
+    # GitHub jadvali soat boshida kechikadi — g'alati daqiqalar va bir nechta zaxira ishlatiladi
+    - cron: "7 0 * * *"      # 05:07 Toshkent → 06:00 da yuboradi
+    - cron: "41 0 * * *"     # 05:41 — zaxira
+    - cron: "23 1 * * *"     # 06:23 — zaxira
+    - cron: "7 13 * * *"     # 18:07 Toshkent → 19:00 da yuboradi
+    - cron: "41 13 * * *"    # 18:41 — zaxira
+    - cron: "23 14 * * *"    # 19:23 — zaxira
   workflow_dispatch:
     inputs:
       channel:
@@ -48,6 +51,7 @@ jobs:
           CH="doxtir,olmaliq"
           case "${{ github.event.inputs.channel }}" in doxtir) CH=doxtir;; olmaliq) CH=olmaliq;; esac
           echo "channels=$CH" >> "$GITHUB_OUTPUT"
+          pip install -q requests python-dotenv
           if [ "${{ github.event_name }}" = "schedule" ]; then
             python run.py --check --channels "$CH" --slot auto >> "$GITHUB_OUTPUT"
           else

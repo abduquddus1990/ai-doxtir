@@ -126,7 +126,7 @@ def make_video(ch, path, quality="full", sponsor_id=None, no_sponsor=False, prev
     print(f"[{ch.name}] Video: {mp4} ({dur:.1f} s)", flush=True)
     return {"ch": ch, "ep": ep, "mp4": mp4, "caption": caption, "sponsor": sponsor}
 
-def wait_until(hhmm, max_wait=50 * 60):
+def wait_until(hhmm, max_wait=60 * 60):
     h, m = map(int, hhmm.split(":")); n = now_tk()
     target = n.replace(hour=h, minute=m, second=0, microsecond=0)
     wait = (target - n).total_seconds()
