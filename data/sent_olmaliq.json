@@ -4,7 +4,8 @@
   "o02_joylashuv",
   "o03_karyer",
   "o04_13_metall",
-  "o05_mis_sim"
+  "o05_mis_sim",
+  "o06_flotatsiya"
  ],
  "log": {
   "2026-11-24_manual": [
@@ -19,6 +20,9 @@
   ],
   "2026-11-26_pm": [
    "o05_mis_sim"
+  ],
+  "2026-11-27_am": [
+   "o06_flotatsiya"
   ]
  },
  "sponsor_counts": {},
