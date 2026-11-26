@@ -3,7 +3,8 @@
   "o01_nomi",
   "o02_joylashuv",
   "o03_karyer",
-  "o04_13_metall"
+  "o04_13_metall",
+  "o05_mis_sim"
  ],
  "log": {
   "2026-11-24_manual": [
@@ -15,6 +16,9 @@
   ],
   "2026-11-26_am": [
    "o04_13_metall"
+  ],
+  "2026-11-26_pm": [
+   "o05_mis_sim"
   ]
  },
  "sponsor_counts": {},

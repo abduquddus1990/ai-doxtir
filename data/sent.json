@@ -3,7 +3,8 @@
   "e01_karies",
   "e02_tish_toshi",
   "e03_implant",
-  "e04_breket"
+  "e04_breket",
+  "e05_oqartirish"
  ],
  "log": {
   "2026-11-24": [
@@ -17,6 +18,9 @@
   ],
   "2026-11-26_am": [
    "e04_breket"
+  ],
+  "2026-11-26_pm": [
+   "e05_oqartirish"
   ]
  },
  "sponsor_counts": {},
