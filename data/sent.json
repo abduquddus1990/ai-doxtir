@@ -5,7 +5,8 @@
   "e03_implant",
   "e04_breket",
   "e05_oqartirish",
-  "e06_kanal"
+  "e06_kanal",
+  "e07_aql_tishi"
  ],
  "log": {
   "2026-11-24": [
@@ -25,6 +26,9 @@
   ],
   "2026-11-27_am": [
    "e06_kanal"
+  ],
+  "2026-11-27_pm": [
+   "e07_aql_tishi"
   ]
  },
  "sponsor_counts": {},

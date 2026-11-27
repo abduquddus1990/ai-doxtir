@@ -5,7 +5,8 @@
   "o03_karyer",
   "o04_13_metall",
   "o05_mis_sim",
-  "o06_flotatsiya"
+  "o06_flotatsiya",
+  "o07_konchi"
  ],
  "log": {
   "2026-11-24_manual": [
@@ -23,6 +24,9 @@
   ],
   "2026-11-27_am": [
    "o06_flotatsiya"
+  ],
+  "2026-11-27_pm": [
+   "o07_konchi"
   ]
  },
  "sponsor_counts": {},
