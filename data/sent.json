@@ -6,7 +6,8 @@
   "e04_breket",
   "e05_oqartirish",
   "e06_kanal",
-  "e07_aql_tishi"
+  "e07_aql_tishi",
+  "e08_sut_tishi"
  ],
  "log": {
   "2026-11-24": [
@@ -29,6 +30,9 @@
   ],
   "2026-11-27_pm": [
    "e07_aql_tishi"
+  ],
+  "2026-11-28_am": [
+   "e08_sut_tishi"
   ]
  },
  "sponsor_counts": {},
