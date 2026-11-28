@@ -7,7 +7,8 @@
   "o05_mis_sim",
   "o06_flotatsiya",
   "o07_konchi",
-  "o08_1951_bugun"
+  "o08_1951_bugun",
+  "o09_dunyo"
  ],
  "log": {
   "2026-11-24_manual": [
@@ -31,6 +32,9 @@
   ],
   "2026-11-28_am": [
    "o08_1951_bugun"
+  ],
+  "2026-11-28_pm": [
+   "o09_dunyo"
   ]
  },
  "sponsor_counts": {},
